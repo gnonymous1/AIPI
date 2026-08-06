@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Manager - Standard Professional Python Web Server</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">⚡</div>
+                <div class="brand-text">
+                    <h2>AI Gateway Pro</h2>
+                    <span class="badge badge-pro">Python Edition</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <span class="icon">📊</span> Dashboard & Status
+                </button>
+                <button class="nav-item" data-tab="endpoints">
+                    <span class="icon">🌐</span> API Endpoints
+                </button>
+                <button class="nav-item" data-tab="playground">
+                    <span class="icon">🧪</span> Model Playground
+                </button>
+                <button class="nav-item" data-tab="providers">
+                    <span class="icon">⚙️</span> Provider Settings
+                </button>
+                <button class="nav-item" data-tab="ports">
+                    <span class="icon">🔌</span> Port & Force Controls
+                </button>
+                <button class="nav-item" data-tab="setup">
+                    <span class="icon">📚</span> Setup Guide
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="server-status">
+                    <div class="status-indicator online" id="status-dot"></div>
+                    <div class="status-info">
+                        <span class="status-title">Python Gateway Server</span>
+                        <span class="status-subtitle" id="gateway-port-text">Port: <span id="current-port">11434</span></span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="top-bar">
+                <div class="header-title">
+                    <h1 id="page-title">Dashboard & Gateway Status</h1>
+                    <p class="subtitle">Standard Professional AI Model Gateway & Python Web Server</p>
+                </div>
+                <div class="header-actions">
+                    <div class="port-quick-select">
+                        <label for="quick-port">Port:</label>
+                        <input type="number" id="quick-port" value="11434" class="input-port">
+                        <button class="btn btn-outline" id="btn-force-start">⚡ Force Port & Restart</button>
+                    </div>
+                    <button class="btn btn-primary" id="btn-refresh-status">🔄 Refresh Status</button>
+                </div>
+            </header>
+
+            <!-- Tab 1: Dashboard & Status -->
+            <section class="tab-content active" id="tab-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-blue">🌐</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Gateway Endpoint</span>
+                            <span class="stat-value" id="dashboard-endpoint">http://127.0.0.1:11434/v1</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-green">⚡</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Active Providers</span>
+                            <span class="stat-value" id="dash-provider-count">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-purple">🤖</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Supported Specs</span>
+                            <span class="stat-value">OpenAI & Anthropic</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-orange">🛡️</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Port Conflict Mode</span>
+                            <span class="stat-value" style="color: #10b981;">Auto Force-Free</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>Configured Providers Overview</h3>
+                        <span class="badge badge-info" id="provider-badge">Active</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Provider Name</th>
+                                    <th>Format Spec</th>
+                                    <th>Base URL</th>
+                                    <th>Default Model</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="providers-table-body">
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">Loading providers...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Standard Professional Endpoints -->
+            <section class="tab-content" id="tab-endpoints">
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>Standard Professional API Endpoints</h3>
+                        <p class="section-desc">Fully compatible with official OpenAI & Anthropic SDKs, Cursor, Claude Code, and custom applications.</p>
+                    </div>
+
+                    <div class="endpoints-list">
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <span class="endpoint-url" id="ep-chat">http://127.0.0.1:11434/v1/chat/completions</span>
+                                <button class="btn btn-sm btn-copy" onclick="copyText(document.getElementById('ep-chat').innerText)">📋 Copy</button>
+                            </div>
+                            <p class="endpoint-desc">OpenAI-compatible chat completion endpoint supporting standard messages array, max_tokens, temperature, and streaming response.</p>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method post">POST</span>
+                                <span class="endpoint-url" id="ep-messages">http://127.0.0.1:11434/v1/messages</span>
+                                <button class="btn btn-sm btn-copy" onclick="copyText(document.getElementById('ep-messages').innerText)">📋 Copy</button>
+                            </div>
+                            <p class="endpoint-desc">Anthropic Messages API compatible endpoint for seamless integration with Claude clients & tools.</p>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <span class="endpoint-url" id="ep-models">http://127.0.0.1:11434/v1/models</span>
+                                <button class="btn btn-sm btn-copy" onclick="copyText(document.getElementById('ep-models').innerText)">📋 Copy</button>
+                            </div>
+                            <p class="endpoint-desc">Aggregates and returns model catalog from all active providers formatted as OpenAI model objects.</p>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <span class="endpoint-url" id="ep-health">http://127.0.0.1:11434/v1/health</span>
+                                <button class="btn btn-sm btn-copy" onclick="copyText(document.getElementById('ep-health').innerText)">📋 Copy</button>
+                            </div>
+                            <p class="endpoint-desc">Gateway health check and active listener status monitoring endpoint.</p>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method get">GET</span>
+                                <span class="endpoint-url" id="ep-openapi">http://127.0.0.1:11434/v1/openapi.json</span>
+                                <button class="btn btn-sm btn-copy" onclick="copyText(document.getElementById('ep-openapi').innerText)">📋 Copy</button>
+                            </div>
+                            <p class="endpoint-desc">Full OpenAPI 3.0 JSON specification document for automated client code generation and Swagger UI.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 3: Model Playground -->
+            <section class="tab-content" id="tab-playground">
+                <div class="playground-layout">
+                    <div class="playground-sidebar">
+                        <div class="form-group">
+                            <label>Target Provider</label>
+                            <select id="play-provider" class="form-control">
+                                <option value="">Auto Select First</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Model ID</label>
+                            <input type="text" id="play-model" class="form-control" value="moonshotai/kimi-k3-free" placeholder="e.g. gpt-4o or claude-3-5-sonnet">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Max Tokens: <span id="val-max-tokens">1024</span></label>
+                            <input type="range" id="play-max-tokens" min="64" max="4096" value="1024" class="slider" oninput="document.getElementById('val-max-tokens').innerText=this.value">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Temperature: <span id="val-temp">0.7</span></label>
+                            <input type="range" id="play-temp" min="0" max="1" step="0.1" value="0.7" class="slider" oninput="document.getElementById('val-temp').innerText=this.value">
+                        </div>
+
+                        <button class="btn btn-primary btn-block" id="btn-send-prompt">🚀 Send Prompt</button>
+                    </div>
+
+                    <div class="playground-main">
+                        <div class="form-group">
+                            <label>Prompt / Messages Input</label>
+                            <textarea id="play-prompt" class="form-control code-font" rows="5" placeholder="Type your prompt here...">Hello! Describe the features of the Standard Professional Python AI Gateway.</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="response-header">
+                                <label>Model Response</label>
+                                <span class="badge badge-info" id="response-meta">Latency: -- ms</span>
+                            </div>
+                            <div id="play-output" class="output-box code-font">Response will appear here after clicking 'Send Prompt'...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 4: Provider Settings -->
+            <section class="tab-content" id="tab-providers">
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>Configuration Editor</h3>
+                        <p class="section-desc">Manage API keys, URLs, formats, and providers stored in config.json.</p>
+                    </div>
+                    <div class="form-group">
+                        <label>config.json Raw View</label>
+                        <textarea id="config-raw" class="form-control code-font" rows="14">Loading configuration...</textarea>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn btn-success" id="btn-save-config">💾 Save Configuration</button>
+                        <button class="btn btn-outline" id="btn-reload-config">🔄 Reload From Gateway</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 5: Port & Force Controls -->
+            <section class="tab-content" id="tab-ports">
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>Port Diagnostics & Force Conflict Resolution</h3>
+                        <p class="section-desc">Detect locked listening ports and forcefully terminate blocking processes on Windows.</p>
+                    </div>
+
+                    <div class="port-control-panel">
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label>Target Port</label>
+                                <input type="number" id="force-port-input" class="form-control" value="11434">
+                            </div>
+                            <div class="form-group flex-2 button-align">
+                                <button class="btn btn-warning" id="btn-scan-port">🔍 Scan Port Status</button>
+                                <button class="btn btn-danger" id="btn-kill-port">⚡ Force Free & Kill PID</button>
+                            </div>
+                        </div>
+
+                        <div class="port-status-box" id="port-status-result">
+                            Click 'Scan Port Status' to check if the port is currently locked or free.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 6: Setup Guide -->
+            <section class="tab-content" id="tab-setup">
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>Standard Professional Setup Guide</h3>
+                        <p class="section-desc">Step-by-step instructions to connect third-party AI clients and CLI tools.</p>
+                    </div>
+
+                    <div class="guide-accordion">
+                        <div class="guide-item">
+                            <h4>1. OpenAI Python / Node.js SDK Setup</h4>
+                            <p>Point the official OpenAI client `base_url` to your local Python gateway:</p>
+                            <pre class="code-block"><code>from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://127.0.0.1:<span class="guide-port">11434</span>/v1",
+    api_key="any-key"
+)
+
+response = client.chat.completions.create(
+    model="moonshotai/kimi-k3-free",
+    messages=[{"role": "user", "content": "Hello world"}]
+)
+print(response.choices[0].message.content)</code></pre>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>2. Claude Code CLI Setup</h4>
+                            <p>Configure Claude Code (`~/.claude/settings.json`) to use the Gateway Anthropic endpoint:</p>
+                            <pre class="code-block"><code>{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:<span class="guide-port">11434</span>/v1",
+    "ANTHROPIC_API_KEY": "omniroute-proxy"
+  }
+}</code></pre>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>3. Cursor & Windsurf IDE Setup</h4>
+                            <p>In Cursor Settings > Models > OpenAI API Key & Base URL:</p>
+                            <ul>
+                                <li><strong>Override OpenAI Base URL:</strong> <code>http://127.0.0.1:<span class="guide-port">11434</span>/v1</code></li>
+                                <li><strong>API Key:</strong> <code>sk-gateway-local</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

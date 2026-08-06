@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*$py.class
+gateway.pid
+*.log
+debug.log
+gateway_run.log
+gateway_server.log
+.env
+.venv
+env/
+venv/
