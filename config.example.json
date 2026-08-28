@@ -1,0 +1,54 @@
+{
+  "providers": [
+    {
+      "name": "OpenCode",
+      "format": "openai",
+      "base_url": "https://opencode.ai/api/v1",
+      "api_key": "YOUR_OPENCODE_API_KEY",
+      "default_model": "hy3-free",
+      "default_temperature": 0.7,
+      "default_max_tokens": 4096,
+      "notes": "Free high-speed models: hy3-free, grok-4.6, mimo-v2.5-free, deepseek-v4-flash-free"
+    },
+    {
+      "name": "Antigravity",
+      "format": "antigravity",
+      "base_url": "https://cloudcode-pa.googleapis.com",
+      "api_key": "",
+      "default_model": "antigravity/claude-sonnet-4-6",
+      "default_temperature": 0.7,
+      "default_max_tokens": 4096,
+      "notes": "Google Antigravity OAuth integration (Claude 4.6, Gemini 3.7/3.6/3.5, GPT-OSS 120B)"
+    },
+    {
+      "name": "OpenAI",
+      "format": "openai",
+      "base_url": "https://api.openai.com/v1",
+      "api_key": "YOUR_OPENAI_API_KEY",
+      "default_model": "gpt-4o",
+      "default_temperature": 0.7,
+      "default_max_tokens": 4096,
+      "notes": "Official OpenAI API"
+    },
+    {
+      "name": "Anthropic",
+      "format": "anthropic",
+      "base_url": "https://api.anthropic.com/v1",
+      "api_key": "YOUR_ANTHROPIC_API_KEY",
+      "default_model": "claude-3-7-sonnet-20250219",
+      "default_temperature": 0.7,
+      "default_max_tokens": 4096,
+      "notes": "Official Anthropic API"
+    },
+    {
+      "name": "Ollama Local",
+      "format": "openai",
+      "base_url": "http://localhost:11434/v1",
+      "api_key": "",
+      "default_model": "llama3.3:latest",
+      "default_temperature": 0.7,
+      "default_max_tokens": 4096,
+      "notes": "Local offline inference via Ollama"
+    }
+  ]
+}

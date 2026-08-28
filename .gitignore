@@ -1,12 +1,82 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.iss
+
+# Environment and Secrets (CRITICAL: Never commit real keys or envs)
+.env
+.env.local
+.env.*.local
+*.env
+*.secret
+*.key
+
+# Application runtime state, databases & user sensitive history
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+config.json
+history.json
+license.json
+privacy.json
 gateway.pid
+*.pid
+
+# Logs & Debug traces
 *.log
 debug.log
 gateway_run.log
 gateway_server.log
-.env
+logs/
+reports/
+reports/*.csv
+reports/*.xlsx
+
+# Temporary / Scratch & IDE configs
+scratch/
+.scratch/
+.tempmediaStorage/
+.user_uploaded/
+.aionrs/
+.opencode/
+.vscode/
+.idea/
+
+# Virtual Environments
 .venv
-env/
 venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini

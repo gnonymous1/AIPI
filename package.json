@@ -1,0 +1,35 @@
+{
+  "name": "aipi-gateway",
+  "version": "1.0.0",
+  "description": "AIPI — Universal AI Protocol Interface Gateway & Model Router (OpenAI / Anthropic Compatible)",
+  "main": "bin/aipi.js",
+  "bin": {
+    "aipi": "./bin/aipi.js",
+    "aipi-gateway": "./bin/aipi.js"
+  },
+  "scripts": {
+    "start": "node bin/aipi.js",
+    "test": "node --version"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "openai",
+    "anthropic",
+    "copilot",
+    "gemini",
+    "claude",
+    "gateway",
+    "router",
+    "aipi"
+  ],
+  "author": "gnonymous",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gnonymous1/AIPI"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

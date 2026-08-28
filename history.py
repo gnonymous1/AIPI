@@ -9,7 +9,8 @@ import os
 import time
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
-HISTORY_PATH = os.path.join(APP_DIR, "history.json")
+DATA_DIR = os.environ.get("AIMM_DATA_DIR", APP_DIR)
+HISTORY_PATH = os.path.join(DATA_DIR, "history.json")
 MAX_ENTRIES = 2000
 
 

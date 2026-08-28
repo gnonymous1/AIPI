@@ -1,0 +1,21 @@
+# AIPI — AI Protocol Interface Docker Compose (Developed by gnonymous)
+# Usage: docker compose up -d
+services:
+  aipi:
+    build: .
+    container_name: aipi
+    ports:
+      - "11434:11434"
+    volumes:
+      - aipi_data:/app/data
+    environment:
+      - AIMM_DATA_DIR=/app/data
+      - AIMM_BIND_HOST=0.0.0.0
+      # SSO (optional — fill in for Enterprise SSO)
+      # - AIMM_OIDC_ISSUER=https://your-idp.example.com
+      # - AIMM_OIDC_CLIENT_ID=aipi
+      # - AIMM_OIDC_CLIENT_SECRET=...
+    restart: unless-stopped
+
+volumes:
+  aipi_data:

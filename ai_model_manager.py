@@ -1,6 +1,7 @@
 """
-ai_model_manager.py - Desktop GUI to manage AI providers (base URL / API key /
-models), test connections, browse models, and run a live model tester.
+ai_model_manager.py - AIPI: Desktop GUI to manage AI providers, test connections,
+configure Claude Code profiles, and control the universal local AI gateway.
+Developed by gnonymous.
 
 Requires only Python 3 stdlib + requests.
 """
@@ -24,13 +25,12 @@ from api_client import (
 )
 import claude_profiles as cp
 import history as hist
-import omniroute_service as omni
 import gateway_server as gw
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(APP_DIR, "config.json")
 
-FORMATS = ["auto", "openai", "anthropic"]
+FORMATS = ["auto", "openai", "anthropic", "antigravity"]
 
 DEFAULT_CONFIG = {
     "providers": [
@@ -51,18 +51,25 @@ DEFAULT_CONFIG = {
             "notes": "claude-code-router local proxy.",
         },
         {
-            "name": "Omniroute (Claude)",
-            "format": "anthropic",
-            "base_url": "http://localhost:20128",
-            "api_key": "omniroute-proxy",
-            "default_model": "antigravity/claude-sonnet-4-6",
-            "notes": "Omniroute proxy (Anthropic-compatible).",
+            "name": "AIPI Multiple Models Router",
+            "format": "openai",
+            "base_url": "http://127.0.0.1:11434/v1",
+            "api_key": "sk-gateway-local",
+            "default_model": "auto/best-coding",
+            "notes": "AIPI Multiple Models Router with enhanced fixations & zero-downtime failover.",
         },
     ]
 }
 
 
 def load_config():
+    try:
+        from db import get_raw_config
+        cfg = get_raw_config()
+        if cfg and cfg.get("providers"):
+            return cfg
+    except Exception:
+        pass
     if os.path.exists(CONFIG_PATH):
         try:
             with open(CONFIG_PATH, "r", encoding="utf-8") as f:
@@ -73,8 +80,16 @@ def load_config():
 
 
 def save_config(config):
-    with open(CONFIG_PATH, "w", encoding="utf-8") as f:
-        json.dump(config, f, indent=2)
+    try:
+        from db import save_all_config
+        save_all_config(config)
+    except Exception:
+        pass
+    try:
+        with open(CONFIG_PATH, "w", encoding="utf-8") as f:
+            json.dump(config, f, indent=2)
+    except Exception:
+        pass
 
 
 class Worker:
@@ -179,7 +194,7 @@ class ModelTestDialog(tk.Toplevel):
             try:
                 return chat({"name": "test", "format": self.fmt,
                              "base_url": self.base, "api_key": self.key},
-                            self.model, prompt, max_tokens, 0.7, 60)
+                            self.model, prompt, max_tokens, 0.7, 60), None
             except Exception as e:
                 return None, str(e)
 
@@ -311,12 +326,12 @@ class ProviderDialog(tk.Toplevel):
 
         ttk.Label(body, text="Default temperature:").grid(row=row, column=0, **pad)
         ttk.Spinbox(body, from_=0.0, to=2.0, increment=0.1,
-                    textvariable=self.var_temp, width=8).grid(row=row, column=1, sticky="w", **pad)
+                    textvariable=self.var_temp, width=8).grid(row=row, column=1, **pad)
         row += 1
 
         ttk.Label(body, text="Default max tokens:").grid(row=row, column=0, **pad)
         ttk.Spinbox(body, from_=1, to=128000, increment=256,
-                    textvariable=self.var_max, width=10).grid(row=row, column=1, sticky="w", **pad)
+                    textvariable=self.var_max, width=10).grid(row=row, column=1, **pad)
         row += 1
 
         ttk.Label(body, text="Notes:").grid(row=row, column=0, **pad)
@@ -395,7 +410,7 @@ class ProviderDialog(tk.Toplevel):
 
         def _job():
             try:
-                return test_connection(base, key, fmt)
+                return test_connection(base, key, fmt), None
             except Exception as e:
                 return None, str(e)
 
@@ -512,7 +527,7 @@ class App:
         self._tray_win = None
         self._stream_job = None
 
-        root.title("AI Model Manager")
+        root.title("AIPI — AI Protocol Interface (by gnonymous)")
         root.geometry("980x720")
         root.minsize(860, 580)
 
@@ -531,6 +546,9 @@ class App:
         # 1) Auto-test all providers shortly after launch (feature #1).
         root.after(900, self._auto_test_launch)
 
+        # 2) Auto-launch AIPI Gateway and Web Dashboard portal on launch
+        root.after(1100, self._auto_launch_web_portal)
+
     def _auto_test_launch(self):
         if not self.config.get("providers"):
             return
@@ -538,10 +556,46 @@ class App:
         for p in list(self.config["providers"]):
             self._test(p)
 
+    def _auto_launch_web_portal(self):
+        """Auto-ensure Gateway is running on launch and open the Web Dashboard portal."""
+        import webbrowser
+        try:
+            port = int(self.gateway_port_var.get().strip())
+        except Exception:
+            port = 11434
+
+        url = f"http://127.0.0.1:{port}/"
+
+        def _launch_worker():
+            if not gw.is_gateway_running():
+                ok, detail = gw.start_gateway(port, force=True)
+                if ok:
+                    self.root.after(0, lambda: self._log(f"AIPI Gateway auto-started on port {port}", ok=True))
+                else:
+                    self.root.after(0, lambda: self._log(f"AIPI Gateway start: {detail}", err=True))
+            else:
+                self.root.after(0, lambda: self._log(f"AIPI Gateway is active on port {port}", ok=True))
+
+            time.sleep(0.5)
+            try:
+                webbrowser.open(url)
+                self.root.after(0, lambda: self._log(f"Auto-launched AIPI Web Portal at {url}", ok=True))
+            except Exception as e:
+                self.root.after(0, lambda: self._log(f"Could not open browser: {e}", err=True))
+
+            self.root.after(0, self._gateway_status)
+
+        threading.Thread(target=_launch_worker, daemon=True).start()
+
+    def _open_web_portal(self):
+        """Open the web portal immediately, starting the gateway if needed."""
+        self._gateway_open_dashboard()
+
     # ---------- UI construction ----------
     def _build_toolbar(self):
         bar = ttk.Frame(self.root, padding=(8, 6))
         bar.pack(fill="x")
+        ttk.Button(bar, text="🌐 Launch Web Portal", command=self._open_web_portal).pack(side="left", padx=3)
         ttk.Button(bar, text="+ Add Provider", command=self._add_provider).pack(side="left", padx=3)
         ttk.Button(bar, text="Edit Provider", command=self._edit_provider).pack(side="left", padx=3)
         ttk.Button(bar, text="Delete Provider", command=self._delete_provider).pack(side="left", padx=3)
@@ -550,7 +604,7 @@ class App:
         ttk.Button(bar, text="Fetch Models", command=self._fetch_models).pack(side="left", padx=3)
         ttk.Button(bar, text="Save Config", command=self._save).pack(side="left", padx=3)
         ttk.Button(bar, text="Quick Switch", command=self._open_quick_switcher).pack(side="left", padx=3)
-        ttk.Button(bar, text="Omniroute", command=self._open_omniroute).pack(side="left", padx=3)
+        ttk.Button(bar, text="Model Router", command=self._open_router_diagnostics).pack(side="left", padx=3)
         ttk.Button(bar, text="Presets", command=self._open_presets).pack(side="left", padx=3)
         ttk.Button(bar, text="Gateway", command=self._open_gateway).pack(side="left", padx=3)
         ttk.Button(bar, text="Import", command=self._import_config).pack(side="left", padx=3)
@@ -587,6 +641,8 @@ class App:
         self.tree.tag_configure("ok", foreground="#0a7d33")
         self.tree.tag_configure("fail", foreground="#c00")
         self.tree.pack(fill="both", expand=True, padx=6, pady=6)
+        self.tree.bind("<Double-1>", lambda e: self._edit_provider())
+        self.tree.bind("<Return>", lambda e: self._edit_provider())
 
         bot = ttk.Frame(tab)
         bot.pack(fill="x", padx=8, pady=(0, 6))
@@ -929,14 +985,17 @@ class App:
         self.root.quit()
 
     # ---------- Cloud provider presets (feature #6) ----------
-    PRESETS = [
-        {"name": "OpenRouter", "format": "auto", "base_url": "https://openrouter.ai/api/v1",
-         "api_key": "", "default_model": "", "notes": "OpenRouter (OpenAI-compatible)."},
-        {"name": "Together", "format": "auto", "base_url": "https://api.together.xyz/v1",
-         "api_key": "", "default_model": "", "notes": "Together AI (OpenAI-compatible)."},
-        {"name": "SambaNova", "format": "auto", "base_url": "https://api.sambanova.ai/v1",
-         "api_key": "", "default_model": "", "notes": "SambaNova Cloud (OpenAI-compatible)."},
-    ]
+    try:
+        from providers_preset import PROVIDERS_PRESETS as PRESETS
+    except Exception:
+        PRESETS = [
+            {"name": "OpenRouter", "format": "auto", "base_url": "https://openrouter.ai/api/v1",
+             "api_key": "", "default_model": "", "notes": "OpenRouter (OpenAI-compatible)."},
+            {"name": "Together", "format": "auto", "base_url": "https://api.together.xyz/v1",
+             "api_key": "", "default_model": "", "notes": "Together AI (OpenAI-compatible)."},
+            {"name": "SambaNova", "format": "auto", "base_url": "https://api.sambanova.ai/v1",
+             "api_key": "", "default_model": "", "notes": "SambaNova Cloud (OpenAI-compatible)."},
+        ]
 
     # CLI tools you can "pass" the current provider+model to.
     TOOLS = [
@@ -950,21 +1009,69 @@ class App:
 
     def _open_presets(self):
         dlg = tk.Toplevel(self.root)
-        dlg.title("Add Cloud Provider Preset")
-        dlg.resizable(False, False)
+        dlg.title("Add Provider Preset (150+ Available)")
+        dlg.geometry("480x520")
         dlg.transient(self.root)
         dlg.grab_set()
-        ttk.Label(dlg, text="Choose a provider template to add:", padding=(10, 8)
-                  ).pack(anchor="w")
-        body = ttk.Frame(dlg, padding=10)
-        body.pack(fill="both", expand=True)
-        for p in self.PRESETS:
-            ttk.Button(body, text="+ %s" % p["name"], width=32,
-                       command=lambda pp=p: self._add_preset(pp, dlg)).pack(
-                pady=2, fill="x")
-        ttk.Label(body, text="API key is left blank — set it after adding.",
-                  foreground="gray", wraplength=280).pack(anchor="w", pady=(8, 0))
-        ttk.Button(body, text="Close", command=dlg.destroy).pack(pady=6)
+
+        ttk.Label(dlg, text="Select a provider preset from 150+ AI cloud & local models:", padding=(12, 8), font=("", 10, "bold")).pack(anchor="w")
+        
+        frame_search = ttk.Frame(dlg, padding=(12, 0))
+        frame_search.pack(fill="x")
+        ttk.Label(frame_search, text="Search Preset:").pack(side="left")
+        search_var = tk.StringVar()
+        search_entry = ttk.Entry(frame_search, textvariable=search_var)
+        search_entry.pack(side="left", fill="x", expand=True, padx=6)
+
+        list_frame = ttk.Frame(dlg, padding=10)
+        list_frame.pack(fill="both", expand=True)
+
+        scrollbar = ttk.Scrollbar(list_frame)
+        scrollbar.pack(side="right", fill="y")
+
+        lb = tk.Listbox(list_frame, yscrollcommand=scrollbar.set, font=("TkDefaultFont", 10))
+        lb.pack(side="left", fill="both", expand=True)
+        scrollbar.config(command=lb.yview)
+
+        presets = list(self.PRESETS)
+
+        def update_list(*args):
+            lb.delete(0, tk.END)
+            q = search_var.get().strip().lower()
+            for p in presets:
+                name = p["name"]
+                notes = p.get("notes", "")
+                base = p.get("base_url", "")
+                display = f"{name}  —  {notes or base}"
+                if not q or q in display.lower():
+                    lb.insert(tk.END, display)
+
+        search_var.trace_add("write", update_list)
+        update_list()
+
+        def on_add():
+            sel = lb.curselection()
+            if not sel:
+                if lb.size() > 0:
+                    lb.selection_set(0)
+                    sel = (0,)
+                else:
+                    return
+            disp = lb.get(sel[0])
+            pname = disp.split("  —  ")[0]
+            matched = next((p for p in presets if p["name"] == pname), None)
+            if matched:
+                self._add_preset(matched, dlg)
+
+        lb.bind("<Double-Button-1>", lambda e: on_add())
+        lb.bind("<Return>", lambda e: on_add())
+        search_entry.bind("<Return>", lambda e: on_add())
+        search_entry.focus_set()
+
+        btn_bar = ttk.Frame(dlg, padding=10)
+        btn_bar.pack(fill="x")
+        ttk.Button(btn_bar, text="+ Add Selected Preset", command=on_add).pack(side="right", padx=4)
+        ttk.Button(btn_bar, text="Close", command=dlg.destroy).pack(side="right")
 
     def _add_preset(self, preset, dlg):
         dlg.destroy()
@@ -1272,46 +1379,48 @@ class App:
         ttk.Button(btns, text="Add", command=save).pack(side="left", padx=6)
         ttk.Button(btns, text="Cancel", command=dlg.destroy).pack(side="left", padx=6)
 
-    # ---------- Omniroute service (launch / fix) ----------
-    def _open_omniroute(self):
+    # ---------- Multiple Models Router (Diagnostics & Smart Failover) ----------
+    def _open_router_diagnostics(self):
         dlg = tk.Toplevel(self.root)
-        dlg.title("Omniroute Service")
-        dlg.resizable(False, False)
+        dlg.title("AIPI Multiple Models Router & Smart Failover")
+        dlg.geometry("520x400")
+        dlg.resizable(True, True)
         dlg.transient(self.root)
         dlg.grab_set()
         body = ttk.Frame(dlg, padding=12)
         body.pack(fill="both", expand=True)
-        status = tk.StringVar(value="Checking…")
-        ttk.Label(body, textvariable=status, wraplength=470,
-                  justify="left").pack(anchor="w", pady=(0, 8))
+
+        ttk.Label(body, text="AIPI Multiple Models Router with Enhanced Fixations", font=("", 11, "bold")).pack(anchor="w", pady=(0, 4))
+        ttk.Label(body, text="Universal intelligent routing engine with zero-downtime token failover, cooldown tracking, and multi-model cascade.", foreground="gray", wraplength=480).pack(anchor="w", pady=(0, 8))
+
+        status = tk.StringVar(value="Checking router health…")
+        st_label = ttk.Label(body, textvariable=status, wraplength=480, justify="left", font=("TkDefaultFont", 10))
+        st_label.pack(anchor="w", pady=(0, 10))
 
         def refresh_status():
-            running, detail = omni.status()
-            status.set(("GREEN - " if running else "RED - ") + detail)
+            try:
+                import router
+                stats = router.get_router_stats()
+                gw_up = gw.is_running(int(self.gateway_port_var.get() or 11434))
+                providers_count = len(self.config.get("providers", []))
+                
+                info = [
+                    f"Gateway Server:  {'ONLINE (Port ' + self.gateway_port_var.get() + ')' if gw_up else 'OFFLINE'}",
+                    f"Configured Providers:  {providers_count}",
+                    f"Total Routed Requests:  {stats.get('total_routed', 0)}",
+                    f"Fallbacks Triggered:   {stats.get('fallbacks_triggered', 0)}",
+                    f"Cooldown Hits:         {stats.get('cooldown_hits', 0)}",
+                    f"Active Cooldowns:      {len(stats.get('active_provider_cooldowns', {}))} providers in cooldown"
+                ]
+                status.set("\n".join(info))
+            except Exception as e:
+                status.set(f"Router status error: {e}")
             dlg.update_idletasks()
-
-        def do_start():
-            status.set("Launching Omniroute…")
-            dlg.update_idletasks()
-            ok, detail = omni.start()
-            status.set(("GREEN - " if ok else "RED - ") + detail)
-
-        def do_fix():
-            status.set("Running fix…")
-            dlg.update_idletasks()
-            ok, detail = omni.fix()
-            status.set(("GREEN - " if ok else "RED - ") + detail)
-
-        def open_dash():
-            import webbrowser
-            webbrowser.open(omni.BASE + "/dashboard/api-manager")
 
         btns = ttk.Frame(body)
-        btns.pack(anchor="w")
-        ttk.Button(btns, text="Check Status", command=refresh_status).pack(side="left", padx=3)
-        ttk.Button(btns, text="Launch", command=do_start).pack(side="left", padx=3)
-        ttk.Button(btns, text="Fix", command=do_fix).pack(side="left", padx=3)
-        ttk.Button(btns, text="Open Dashboard", command=open_dash).pack(side="left", padx=3)
+        btns.pack(anchor="w", pady=(12, 0))
+        ttk.Button(btns, text="Refresh Status", command=refresh_status).pack(side="left", padx=3)
+        ttk.Button(btns, text="Open Web Dashboard 🌐", command=self._gateway_open_dashboard).pack(side="left", padx=3)
         ttk.Button(btns, text="Close", command=dlg.destroy).pack(side="left", padx=3)
         refresh_status()
 
@@ -1617,6 +1726,7 @@ class App:
         ttk.Button(btns, text="Stop Gateway", command=self._gateway_stop).pack(side="left", padx=4)
         ttk.Button(btns, text="Check Status", command=self._gateway_status).pack(side="left", padx=4)
         ttk.Button(btns, text="Copy URL", command=self._gateway_copy_url).pack(side="left", padx=4)
+        ttk.Button(btns, text="🔑 Copy Master API Key", command=self._gateway_copy_master_key).pack(side="left", padx=4)
         ttk.Button(btns, text="Open Browser Dashboard 🌐", command=self._gateway_open_dashboard).pack(side="left", padx=4)
 
         # Port scanner - show free / locked ports to debug conflicts
@@ -1748,6 +1858,18 @@ class App:
         self.root.clipboard_clear()
         self.root.clipboard_append(url)
         self._log("Copied gateway URL: %s" % url)
+
+    def _gateway_copy_master_key(self):
+        try:
+            import virtual_keys
+            mk = virtual_keys.get_master_key()
+            sec = mk.get("secret_key", "")
+            self.root.clipboard_clear()
+            self.root.clipboard_append(sec)
+            self._log("Copied Master AIPI API Key: %s" % mk.get("masked_key", ""))
+            messagebox.showinfo("Master AIPI API Key", f"Copied Master API Key to clipboard:\n\n{sec}\n\nUse in Authorization: Bearer {sec}")
+        except Exception as e:
+            messagebox.showerror("Key Error", str(e))
 
     def _gateway_open_dashboard(self):
         import webbrowser

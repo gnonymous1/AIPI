@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+.git
+.ai_model_manager.db
+ai_model_manager.db
+*.log
+reports/
+dist/
+build/
+*.spec

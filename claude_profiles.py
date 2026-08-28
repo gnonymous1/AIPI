@@ -149,7 +149,7 @@ def parse_settings_file(path):
     base_url = (env.get("ANTHROPIC_BASE_URL") or "").strip()
     api_key = (env.get("ANTHROPIC_API_KEY") or "").strip()
     if not base_url:
-        base_url = (env.get("ANTHROPIC_MODEL") and "") or data.get("api_base", "") or ""
+        base_url = (data.get("api_base") or env.get("ANTHROPIC_BASE_URL") or "").strip()
     return {
         "name": os.path.basename(os.path.dirname(os.path.abspath(path))),
         "model": model,

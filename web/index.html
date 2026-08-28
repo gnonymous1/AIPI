@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Model Manager - Standard Professional Python Web Server</title>
+    <title>AIPI — AI Protocol Interface &amp; Model Gateway</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -14,8 +14,8 @@
             <div class="brand">
                 <div class="logo">⚡</div>
                 <div class="brand-text">
-                    <h2>AI Gateway Pro</h2>
-                    <span class="badge badge-pro">Python Edition</span>
+                    <h2>AIPI</h2>
+                    <span class="badge badge-pro">by gnonymous</span>
                 </div>
             </div>
             
@@ -23,17 +23,35 @@
                 <button class="nav-item active" data-tab="dashboard">
                     <span class="icon">📊</span> Dashboard & Status
                 </button>
+                <button class="nav-item" data-tab="profilers">
+                    <span class="icon">🎛️</span> Auto-Profilers
+                </button>
+                <button class="nav-item" data-tab="ide-setup">
+                    <span class="icon">🎯</span> 1-Click IDE Setup
+                </button>
+                <button class="nav-item" data-tab="vkeys">
+                    <span class="icon">🔑</span> Virtual API Keys
+                </button>
+                <button class="nav-item" data-tab="analytics">
+                    <span class="icon">📈</span> Cost & Analytics
+                </button>
                 <button class="nav-item" data-tab="endpoints">
                     <span class="icon">🌐</span> API Endpoints
                 </button>
                 <button class="nav-item" data-tab="playground">
-                    <span class="icon">🧪</span> Model Playground
+                    <span class="icon">⚔️</span> Arena & Playground
+                </button>
+                <button class="nav-item" data-tab="provider-hub">
+                    <span class="icon">🔌</span> Provider Hub
                 </button>
                 <button class="nav-item" data-tab="providers">
                     <span class="icon">⚙️</span> Provider Settings
                 </button>
                 <button class="nav-item" data-tab="ports">
                     <span class="icon">🔌</span> Port & Force Controls
+                </button>
+                <button class="nav-item" data-tab="admin" style="display: none;">
+                    <span class="icon">🛡️</span> Admin & License
                 </button>
                 <button class="nav-item" data-tab="setup">
                     <span class="icon">📚</span> Setup Guide
@@ -44,7 +62,7 @@
                 <div class="server-status">
                     <div class="status-indicator online" id="status-dot"></div>
                     <div class="status-info">
-                        <span class="status-title">Python Gateway Server</span>
+                        <span class="status-title">AIPI Gateway Server</span>
                         <span class="status-subtitle" id="gateway-port-text">Port: <span id="current-port">11434</span></span>
                     </div>
                 </div>
@@ -57,15 +75,21 @@
             <header class="top-bar">
                 <div class="header-title">
                     <h1 id="page-title">Dashboard & Gateway Status</h1>
-                    <p class="subtitle">Standard Professional AI Model Gateway & Python Web Server</p>
+                    <p class="subtitle">AIPI — AI Protocol Interface: Universal Local Gateway & Token Infrastructure</p>
                 </div>
-                <div class="header-actions">
+                <div class="header-actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <button class="btn btn-sm btn-outline" id="btn-toggle-pii" style="display: flex; align-items: center; gap: 6px;">
+                        <span>🛡️ PII Masker:</span> <strong id="pii-status-text" style="color:#10b981;">ON</strong>
+                    </button>
+                    <button class="btn btn-sm btn-outline" id="btn-toggle-stealth" style="display: flex; align-items: center; gap: 6px;">
+                        <span>🔒 Air-Gap Stealth:</span> <strong id="stealth-status-text" style="color:#94a3b8;">OFF</strong>
+                    </button>
                     <div class="port-quick-select">
                         <label for="quick-port">Port:</label>
                         <input type="number" id="quick-port" value="11434" class="input-port">
-                        <button class="btn btn-outline" id="btn-force-start">⚡ Force Port & Restart</button>
+                        <button class="btn btn-outline" id="btn-force-start">⚡ Force Port</button>
                     </div>
-                    <button class="btn btn-primary" id="btn-refresh-status">🔄 Refresh Status</button>
+                    <button class="btn btn-primary" id="btn-refresh-status">🔄 Refresh</button>
                 </div>
             </header>
 
@@ -103,9 +127,15 @@
                 </div>
 
                 <div class="card-section">
-                    <div class="card-header">
-                        <h3>Configured Providers Overview</h3>
-                        <span class="badge badge-info" id="provider-badge">Active</span>
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>Configured Providers Overview</h3>
+                            <p class="section-desc" style="margin: 0;">Manage your AI model server connections and settings.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <span class="badge badge-info" id="provider-badge">Active</span>
+                            <button class="btn btn-primary btn-sm" onclick="openProviderForm(null)">+ Add Provider</button>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="data-table">
@@ -116,14 +146,247 @@
                                     <th>Base URL</th>
                                     <th>Default Model</th>
                                     <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="providers-table-body">
                                 <tr>
-                                    <td colspan="5" class="text-center text-muted">Loading providers...</td>
+                                    <td colspan="6" class="text-center text-muted">Loading providers...</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Auto-Profilers & Token Failover Engine -->
+            <section class="tab-content" id="tab-profilers">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-purple">🎛️</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Active Profiles</span>
+                            <span class="stat-value" id="prof-count">12</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-blue">🔀</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Total Routed</span>
+                            <span class="stat-value" id="prof-routed">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-green">🛡️</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Quota Failovers</span>
+                            <span class="stat-value" id="prof-failovers" style="color:#10b981;">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-orange">⚡</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Failover Engine</span>
+                            <span class="stat-value" style="color:#38bdf8;">Active (Autonomous)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h3 style="display:flex; align-items:center; gap:8px;">
+                                <span>🎛️ Auto-Profilers & Autonomous Token Failover</span>
+                                <span class="badge badge-success" style="font-size:11px;">100% Autonomous</span>
+                            </h3>
+                            <p class="section-desc" style="margin:0;">
+                                Intelligent model cascades that automatically switch when tokens are consumed, rate limits occur, or models are unreachable. Use any Profile ID (e.g. <code>auto/best-free</code>) directly in any AI agent or IDE.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button class="btn btn-outline btn-sm" onclick="openProfileSimulator()">⚡ Live Simulator</button>
+                            <button class="btn btn-primary btn-sm" onclick="openProfileEditorModal()">➕ Create Custom Profile</button>
+                        </div>
+                    </div>
+
+                    <div style="margin: 14px 0 6px 0; display: flex; gap: 8px; flex-wrap: wrap;" id="profiler-filter-bar">
+                        <button class="btn btn-xs btn-primary prof-filter-btn active" data-filter="all">All Profiles</button>
+                        <button class="btn btn-xs btn-outline prof-filter-btn" data-filter="free">🆓 Free Tier</button>
+                        <button class="btn btn-xs btn-outline prof-filter-btn" data-filter="coding">💻 Coding</button>
+                        <button class="btn btn-xs btn-outline prof-filter-btn" data-filter="reasoning">🧠 Reasoning</button>
+                        <button class="btn btn-xs btn-outline prof-filter-btn" data-filter="fast">⚡ Fast</button>
+                        <button class="btn btn-xs btn-outline prof-filter-btn" data-filter="vision">👁️ Vision</button>
+                        <button class="btn btn-xs btn-outline prof-filter-btn" data-filter="custom">✨ Custom</button>
+                    </div>
+
+                    <div class="profiler-grid" id="profiler-cards-container" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:16px; margin-top:16px;">
+                        <!-- Dynamically populated Auto-Profile Cards -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: AIPI Platform & Virtual API Keys -->
+            <section class="tab-content" id="tab-vkeys">
+                <!-- Master AIPI Key Banner -->
+                <div class="card-section" style="border: 1px solid rgba(56, 189, 248, 0.4); background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8)); margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 20px;">⚡</span>
+                                <h3 style="color: #38bdf8; margin: 0;">Master AIPI Platform API Key</h3>
+                                <span class="badge badge-green">Ready &amp; Active</span>
+                            </div>
+                            <p class="section-desc" style="margin-top: 4px;">Universal master key for unlimited access to all connected models, routing, and tools on this local gateway.</p>
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <input type="password" id="master-key-val" class="form-control code-font" style="width: 280px;" value="Loading master key..." readonly>
+                            <button class="btn btn-outline btn-sm" id="btn-toggle-master-key" onclick="toggleMasterKeyVisibility()">👁️ Show</button>
+                            <button class="btn btn-primary btn-sm" id="btn-copy-master-key" onclick="copyMasterKey()">📋 Copy Master Key</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Key Management Grid -->
+                <div class="card-section">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>🔑 AIPI API Key Generator &amp; Multi-Tenant Control</h3>
+                            <p class="section-desc">Generate secure <code>aipi-live-...</code> API keys with individual monthly spend caps, rate limits, model whitelists, and expiration dates.</p>
+                        </div>
+                        <button class="btn btn-primary" id="btn-open-create-key-modal" onclick="openCreateKeyModal()">+ Generate New API Key</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Key Name</th>
+                                    <th>API Key (Secret)</th>
+                                    <th>Monthly Budget</th>
+                                    <th>Rate Limit</th>
+                                    <th>Expiry</th>
+                                    <th>Last Used</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vkeys-table-body">
+                                <tr>
+                                    <td colspan="8" class="text-center text-muted">Loading PROXIA API keys...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal: Generate API Key Dialog -->
+                <div id="modal-create-key" class="modal-backdrop" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9999; align-items: center; justify-content: center;">
+                    <div class="card-section" style="width: 100%; max-width: 520px; background: #1e293b; border: 1px solid var(--border); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+                        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="margin: 0; color: #38bdf8;">✨ Generate AIPI Platform API Key</h3>
+                            <button class="btn btn-sm btn-outline" onclick="closeCreateKeyModal()">✕</button>
+                        </div>
+                        <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
+                            <div>
+                                <label style="font-size: 13px; font-weight: 500;">Key Name / Label</label>
+                                <input type="text" id="mk-name" class="form-control" placeholder="e.g. Cursor IDE, Claude Code, Team Agent" value="Developer Key">
+                            </div>
+                            <div style="display: flex; gap: 12px;">
+                                <div style="flex: 1;">
+                                    <label style="font-size: 13px; font-weight: 500;">Monthly Budget (USD)</label>
+                                    <input type="number" id="mk-budget" class="form-control" placeholder="0 = Unlimited" value="0" min="0" step="1">
+                                </div>
+                                <div style="flex: 1;">
+                                    <label style="font-size: 13px; font-weight: 500;">Rate Limit (RPM)</label>
+                                    <input type="number" id="mk-rpm" class="form-control" placeholder="0 = Unlimited" value="0" min="0" step="10">
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px;">
+                                <div style="flex: 1;">
+                                    <label style="font-size: 13px; font-weight: 500;">Key Expiration</label>
+                                    <select id="mk-expiry" class="form-control">
+                                        <option value="0">Never Expires</option>
+                                        <option value="30">30 Days</option>
+                                        <option value="90">90 Days</option>
+                                        <option value="365">1 Year</option>
+                                    </select>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label style="font-size: 13px; font-weight: 500;">Allowed Models</label>
+                                    <input type="text" id="mk-models" class="form-control" placeholder="Blank = All models">
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
+                                <button class="btn btn-outline" onclick="closeCreateKeyModal()">Cancel</button>
+                                <button class="btn btn-primary" id="btn-submit-create-key" onclick="submitCreateKey()">🚀 Generate Key</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal: Newly Created Key Showcase -->
+                <div id="modal-key-success" class="modal-backdrop" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9999; align-items: center; justify-content: center;">
+                    <div class="card-section" style="width: 100%; max-width: 520px; background: #1e293b; border: 1px solid #10b981; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+                        <div class="card-header">
+                            <h3 style="color: #10b981; margin: 0;">🎉 AIPI API Key Created!</h3>
+                            <p class="section-desc" style="color: #f59e0b; margin-top: 6px;">Please copy your secret key now. For your security, it will never be displayed in full again.</p>
+                        </div>
+                        <div style="margin-top: 14px;">
+                            <label style="font-size: 12px; color: var(--text-muted);">AIPI Secret API Key:</label>
+                            <div style="display: flex; gap: 8px; margin-top: 4px;">
+                                <input type="text" id="new-key-secret-val" class="form-control code-font" style="color: #10b981; font-weight: bold;" readonly>
+                                <button class="btn btn-primary" onclick="copyNewCreatedKey()">📋 Copy</button>
+                            </div>
+                            <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
+                                <button class="btn btn-outline" onclick="closeKeySuccessModal()">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: Cost Analytics & Performance -->
+            <section class="tab-content" id="tab-analytics">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-green">💵</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Estimated Spend</span>
+                            <span class="stat-value" id="ana-cost">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-blue">📊</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Total Tokens</span>
+                            <span class="stat-value" id="ana-tokens">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-purple">⚡</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Cache Hit Rate</span>
+                            <span class="stat-value" id="ana-cache-hit">0.0%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-orange">⏱️</div>
+                        <div class="stat-details">
+                            <span class="stat-label">Avg Latency</span>
+                            <span class="stat-value" id="ana-latency">0 ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>Zero-Latency Exact Match Cache</h3>
+                            <p class="section-desc">Instantly serves duplicate prompts in 0ms with 0 token cost.</p>
+                        </div>
+                        <button class="btn btn-outline btn-sm" id="btn-clear-cache">🗑️ Clear Prompt Cache</button>
+                    </div>
+                    <div class="port-status-box" id="cache-stats-box">
+                        Loading cache telemetry...
                     </div>
                 </div>
             </section>
@@ -185,9 +448,33 @@
                 </div>
             </section>
 
-            <!-- Tab 3: Model Playground -->
+            <!-- Tab: 1-Click IDE Setup -->
+            <section class="tab-content" id="tab-ide-setup">
+                <div class="card-section">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>🎯 1-Click IDE Auto-Configurator</h3>
+                            <p class="section-desc">Instantly inject AIPI local gateway settings into your installed AI developer tools with 0 manual JSON editing.</p>
+                        </div>
+                        <button class="btn btn-outline btn-sm" id="btn-rescan-ides">🔍 Re-Scan IDEs</button>
+                    </div>
+
+                    <div id="ide-cards-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 12px;">
+                        <!-- Dynamically populated IDE cards -->
+                        <div class="port-status-box">Scanning installed IDEs and developer tools...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 3: Model Playground & Battle Arena -->
             <section class="tab-content" id="tab-playground">
-                <div class="playground-layout">
+                <div style="display: flex; gap: 12px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+                    <button class="btn btn-sm btn-primary" id="btn-mode-single">Single Model Mode</button>
+                    <button class="btn btn-sm btn-outline" id="btn-mode-arena">⚔️ Multi-Model Battle Arena</button>
+                </div>
+
+                <!-- Single Mode Layout -->
+                <div id="playground-single-mode" class="playground-layout">
                     <div class="playground-sidebar">
                         <div class="form-group">
                             <label>Target Provider</label>
@@ -197,8 +484,29 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Model ID</label>
-                            <input type="text" id="play-model" class="form-control" value="moonshotai/kimi-k3-free" placeholder="e.g. gpt-4o or claude-3-5-sonnet">
+                            <label style="display:flex; justify-content:space-between; align-items:center;">
+                                <span>Model ID</span>
+                                <span style="font-size:11px; color:#38bdf8; font-weight:normal;">Click any pill below to select</span>
+                            </label>
+                            <input type="text" id="play-model" class="form-control" value="" placeholder="Type or click a model below, e.g. gpt-4o" list="model-list" autocomplete="off">
+                            <datalist id="model-list"></datalist>
+                            <div id="play-model-chips" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;"></div>
+                        </div>
+
+                        <!-- Antigravity Live Quota Panel -->
+                        <div id="agy-quota-panel" style="display:none; margin-bottom:12px; background:rgba(15,15,40,0.7); border:1px solid #3b3b6b; border-radius:10px; padding:10px 12px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                                <span style="font-size:11px; font-weight:700; color:#a78bfa; letter-spacing:0.5px;">🔋 ANTIGRAVITY LIVE QUOTA</span>
+                                <div style="display:flex; gap:4px;">
+                                    <button onclick="loadAntigravityQuota()" style="background:none; border:1px solid #6366f1; border-radius:6px; color:#6366f1; font-size:10px; padding:2px 6px; cursor:pointer;" title="Refresh Quota">↻ Refresh</button>
+                                    <button onclick="window.open('/v1/oauth/antigravity/start', '_blank')" style="background:rgba(99,102,241,0.2); border:1px solid #818cf8; border-radius:6px; color:#c7d2fe; font-size:10px; padding:2px 6px; cursor:pointer;" title="Switch or Re-Authenticate Google Account">🔑 Switch Account</button>
+                                </div>
+                            </div>
+                            <div id="agy-quota-account" style="font-size:10px; color:#94a3b8; margin-bottom:6px; background:rgba(255,255,255,0.04); padding:3px 6px; border-radius:4px;">Account: Loading...</div>
+                            <div id="agy-quota-list" style="display:flex; flex-direction:column; gap:5px; max-height:220px; overflow-y:auto;">
+                                <span style="color:#6b7280; font-size:11px;">Loading quota data...</span>
+                            </div>
+                            <div id="agy-quota-reset" style="font-size:10px; color:#6b7280; margin-top:6px; text-align:right;"></div>
                         </div>
 
                         <div class="form-group">
@@ -211,13 +519,27 @@
                             <input type="range" id="play-temp" min="0" max="1" step="0.1" value="0.7" class="slider" oninput="document.getElementById('val-temp').innerText=this.value">
                         </div>
 
+                        <div class="form-group">
+                            <label style="display:flex; justify-content:space-between; align-items:center;">
+                                <span>🧠 Thinking Level (Reasoning)</span>
+                                <span id="val-thinking-label" style="font-size:11px; color:#38bdf8; font-weight:normal;">Medium (4k)</span>
+                            </label>
+                            <select id="play-thinking" class="form-control" style="background:#1e1e38; border-color:#6366f1;">
+                                <option value="0">Off (No Thinking Budget)</option>
+                                <option value="1024">Low (1,024 Tokens - Fast)</option>
+                                <option value="4096" selected>Medium (4,096 Tokens - Balanced)</option>
+                                <option value="8192">High (8,192 Tokens - Deep Thought)</option>
+                                <option value="16384">Ultra (16,384 Tokens - Max Reasoning)</option>
+                            </select>
+                        </div>
+
                         <button class="btn btn-primary btn-block" id="btn-send-prompt">🚀 Send Prompt</button>
                     </div>
 
                     <div class="playground-main">
                         <div class="form-group">
                             <label>Prompt / Messages Input</label>
-                            <textarea id="play-prompt" class="form-control code-font" rows="5" placeholder="Type your prompt here...">Hello! Describe the features of the Standard Professional Python AI Gateway.</textarea>
+                            <textarea id="play-prompt" class="form-control code-font" rows="5" placeholder="Type your prompt here...">Hello! Describe the key advantages of AIPI.</textarea>
                         </div>
 
                         <div class="form-group">
@@ -229,14 +551,126 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Battle Arena Mode Layout -->
+                <div id="playground-arena-mode" style="display: none;">
+                    <div class="card-section" style="margin-bottom: 16px;">
+                        <div class="form-row" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 220px;">
+                                <label>🥊 Challenger 1 (Model A)</label>
+                                <input type="text" id="arena-model-a" class="form-control" placeholder="e.g. gpt-4o" value="gpt-4o" onfocus="this.select()" list="model-list">
+                                <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px;">
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#38bdf8; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-a').value='gpt-4o'">gpt-4o</span>
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#38bdf8; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-a').value='claude-3-7-sonnet-20250219'">claude-3.7</span>
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#38bdf8; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-a').value='deepseek-chat'">deepseek-v3</span>
+                                </div>
+                            </div>
+                            <div style="flex: 1; min-width: 220px;">
+                                <label>🥊 Challenger 2 (Model B)</label>
+                                <input type="text" id="arena-model-b" class="form-control" placeholder="e.g. claude-3-7-sonnet" value="claude-3-7-sonnet-20250219" onfocus="this.select()" list="model-list">
+                                <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px;">
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#a78bfa; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-b').value='gemini-2.0-flash'">gemini-2.0</span>
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#a78bfa; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-b').value='deepseek-reasoner'">deepseek-r1</span>
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#a78bfa; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-b').value='llama-3.3-70b-versatile'">llama-3.3</span>
+                                </div>
+                            </div>
+                            <div style="flex: 1; min-width: 220px;">
+                                <label>🥊 Challenger 3 (Model C - Optional)</label>
+                                <input type="text" id="arena-model-c" class="form-control" placeholder="e.g. deepseek-v3" value="deepseek-chat" onfocus="this.select()" list="model-list">
+                                <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px;">
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#10b981; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-c').value='mistral-large-latest'">mistral-large</span>
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#10b981; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-c').value='grok-2-latest'">grok-2</span>
+                                    <span class="badge" style="cursor:pointer; background:#1e293b; color:#10b981; font-size:10px; padding:2px 6px;" onclick="document.getElementById('arena-model-c').value='moonshot-v1-8k'">kimi-moonshot</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 12px;">
+                            <label>Battle Prompt</label>
+                            <textarea id="arena-prompt" class="form-control code-font" rows="3">Write a quick Python function that calculates Fibonacci numbers using memoization and benchmark its efficiency.</textarea>
+                        </div>
+
+                        <div style="margin-top: 12px; display: flex; gap: 10px;">
+                            <button class="btn btn-primary" id="btn-run-arena">⚔️ Run 3-Way Battle</button>
+                        </div>
+                    </div>
+
+                    <!-- Battle Results Columns -->
+                    <div id="arena-results-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
             </section>
 
             <!-- Tab 4: Provider Settings -->
+            <!-- Tab: Provider Hub (OAuth + Key Connect) -->
+            <section class="tab-content" id="tab-provider-hub">
+
+                <!-- Live Status Banner -->
+                <div id="hub-status-bar" style="display:flex; align-items:center; gap:10px; background:#0f172a; border:1px solid #1e3a5f; border-radius:10px; padding:12px 16px; margin-bottom:20px; font-size:13px; color:#94a3b8;">
+                    <span style="width:8px; height:8px; border-radius:50%; background:#38bdf8; display:inline-block;"></span>
+                    <span id="hub-status-bar-text">Scanning provider connections…</span>
+                    <button onclick="loadProviderHubStatus()" class="btn btn-outline btn-sm" style="margin-left:auto;">↺ Refresh All</button>
+                </div>
+
+                <!-- Provider Cards Grid -->
+                <div id="hub-providers-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:16px; margin-bottom:24px;">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <!-- Section Title & Search/Filter Controls -->
+                <div style="border-top:1px solid #1e293b; padding-top:20px; margin-top:4px; margin-bottom:12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                        <div>
+                            <h3 style="margin:0 0 4px; color:#f8fafc; font-size:16px;">⚡ 169+ Major AI Providers Library</h3>
+                            <p style="margin:0; color:#64748b; font-size:13px;">Click any provider card to connect via API key, OAuth, session cookie, or local server.</p>
+                        </div>
+                    </div>
+                    <!-- Dynamic Search & Category Filter Buttons -->
+                    <div id="hub-filter-controls"></div>
+                </div>
+
+                <!-- All Preset Provider Cards -->
+                <div id="hub-preset-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:14px;">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Tab: Provider Settings -->
             <section class="tab-content" id="tab-providers">
                 <div class="card-section">
                     <div class="card-header">
+                        <h3>Provider &amp; Server Management</h3>
+                        <p class="section-desc">Add, edit, or delete the AI servers modeled by the desktop app — changes are saved straight to config.json.</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Format</th>
+                                    <th>Base URL</th>
+                                    <th>Default Model</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mgmt-providers-body">
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">Loading servers...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn btn-primary" id="btn-add-provider">+ Add Server</button>
+                        <button class="btn btn-outline" id="btn-reload-providers">Load Servers</button>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <div class="card-header">
                         <h3>Configuration Editor</h3>
-                        <p class="section-desc">Manage API keys, URLs, formats, and providers stored in config.json.</p>
+                        <p class="section-desc">Manage API keys, base URLs, formats, and providers stored in config.json.</p>
                     </div>
                     <div class="form-group">
                         <label>config.json Raw View</label>
@@ -276,6 +710,104 @@
                 </div>
             </section>
 
+            <!-- Tab: Admin & License (Team Edition) -->
+            <section class="tab-content" id="tab-admin">
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>🔑 Admin Login & Team RBAC</h3>
+                        <p class="section-desc">Authenticate as admin, manage team members, and control role-based access. Default admin: <code>admin</code> / <code>admin123</code> (change immediately).</p>
+                    </div>
+                    <div class="form-row" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end;">
+                        <div>
+                            <label>Username</label>
+                            <input type="text" id="admin-user" value="admin" class="form-input" style="width:160px;">
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <input type="password" id="admin-pass" value="admin123" class="form-input" style="width:160px;">
+                        </div>
+                        <button class="btn btn-primary" id="btn-admin-login">🔓 Login</button>
+                        <button class="btn btn-outline" id="btn-admin-logout" style="display:none;">🚪 Logout</button>
+                    </div>
+                    <div id="admin-login-status" class="text-muted" style="margin-top: 8px;">Not authenticated.</div>
+                </div>
+
+                <div class="card-section" id="admin-users-section" style="display:none;">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>Team Members</h3>
+                            <p class="section-desc">Create users with roles: <code>admin</code>, <code>member</code>, <code>viewer</code>.</p>
+                        </div>
+                    </div>
+                    <div class="form-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+                        <input type="text" id="new-user-name" placeholder="username" class="form-input" style="width:160px;">
+                        <input type="password" id="new-user-pass" placeholder="password" class="form-input" style="width:160px;">
+                        <select id="new-user-role" class="form-input" style="width:130px;">
+                            <option value="member">member</option>
+                            <option value="viewer">viewer</option>
+                            <option value="admin">admin</option>
+                        </select>
+                        <button class="btn btn-primary" id="btn-create-user">+ Add User</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead><tr><th>Username</th><th>Role</th><th>Created At</th><th>Actions</th></tr></thead>
+                            <tbody id="admin-users-body"><tr><td colspan="4" class="text-center text-muted">Login to view team members.</td></tr></tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
+                        <h4 style="margin-bottom: 8px;">🛡️ Change Admin Password</h4>
+                        <div class="form-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <input type="password" id="change-pass-current" placeholder="Current Password" class="form-input" style="width:180px;">
+                            <input type="password" id="change-pass-new" placeholder="New Password (min 6 chars)" class="form-input" style="width:200px;">
+                            <button class="btn btn-outline" id="btn-change-password">Update Password</button>
+                        </div>
+                        <div id="change-pass-status" class="text-muted" style="margin-top: 6px; font-size: 12px;"></div>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>📜 License & Tier Status</h3>
+                        <p class="section-desc">Community (free) / Pro / Enterprise tiers unlock features. Activate a license key to upgrade.</p>
+                    </div>
+                    <div id="license-status-box" class="port-status-box">Loading license status...</div>
+                    <div class="form-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+                        <input type="text" id="license-key-input" placeholder="Paste license key" class="form-input" style="flex:1; min-width:260px;">
+                        <button class="btn btn-primary" id="btn-activate-license">⚡ Activate License</button>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>📊 Usage Reports & Billing Export</h3>
+                            <p class="section-desc">Generate CSV usage reports and JSON summaries for accounting.</p>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-outline" id="btn-export-csv">⬇ Export CSV</button>
+                            <button class="btn btn-outline" id="btn-export-json">⬇ Export JSON</button>
+                        </div>
+                    </div>
+                    <div id="export-status-box" class="port-status-box">Reports are saved into the <code>reports/</code> folder.</div>
+                </div>
+
+                <div class="card-section">
+                    <div class="card-header">
+                        <h3>🔐 SSO / OIDC Configuration (Enterprise)</h3>
+                        <p class="section-desc">Connect Google, Azure AD, Okta, or Keycloak for single sign-on.</p>
+                    </div>
+                    <div id="oidc-status-box" class="port-status-box">Loading SSO status...</div>
+                    <div class="form-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+                        <input type="text" id="oidc-issuer" placeholder="Issuer URL (e.g. https://accounts.google.com)" class="form-input" style="flex:2; min-width:240px;">
+                        <input type="text" id="oidc-client-id" placeholder="Client ID" class="form-input" style="flex:1; min-width:160px;">
+                        <input type="text" id="oidc-client-secret" placeholder="Client Secret" class="form-input" style="flex:1; min-width:160px;">
+                        <button class="btn btn-primary" id="btn-save-oidc">💾 Save SSO Config</button>
+                    </div>
+                </div>
+            </section>
+
             <!-- Tab 6: Setup Guide -->
             <section class="tab-content" id="tab-setup">
                 <div class="card-section">
@@ -308,7 +840,7 @@ print(response.choices[0].message.content)</code></pre>
                             <pre class="code-block"><code>{
   "env": {
     "ANTHROPIC_BASE_URL": "http://127.0.0.1:<span class="guide-port">11434</span>/v1",
-    "ANTHROPIC_API_KEY": "omniroute-proxy"
+    "ANTHROPIC_API_KEY": "aipi-gateway-key"
   }
 }</code></pre>
                         </div>
@@ -327,6 +859,277 @@ print(response.choices[0].message.content)</code></pre>
         </main>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Provider Add/Edit Modal -->
+    <div class="modal-overlay" id="provider-modal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="provider-modal-title">
+            <div class="modal-header">
+                <h3 id="provider-modal-title">Add Server</h3>
+                <button class="modal-close" onclick="closeProviderModal()" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="background: rgba(56, 189, 248, 0.08); padding: 12px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.2); margin-bottom: 16px;">
+                    <label style="font-weight: 600; color: #38bdf8; display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                        <span>⚡ Select Major Provider Preset</span>
+                        <span class="badge badge-purple" style="font-size: 11px;">30+ Available</span>
+                    </label>
+                    <select id="pf-preset-select" class="form-control" style="background: #0f172a; border-color: #38bdf8; color: #e2e8f0; font-weight: 500;">
+                        <option value="">-- Pick from 30+ Major AI Providers --</option>
+                    </select>
+                    <small class="form-hint" style="color: #94a3b8; margin-top: 4px; display: block;">Selecting a provider auto-fills Name, Base URL, Format & Default Model. Choose your Connection Method below!</small>
+                </div>
+                <div class="form-group">
+                    <label>Display Name</label>
+                    <input type="text" id="pf-name" class="form-control" placeholder="e.g. My Groq Server">
+                </div>
+                <div class="form-group">
+                    <label>Connection Method / Authentication Type</label>
+                    <select id="pf-auth-type" class="form-control" onchange="onProviderAuthTypeChange()">
+                        <option value="apikey">🔑 API Key (Standard Bearer / Header)</option>
+                        <option value="oauth">🔗 OAuth 2.0 / Device Code Authorization</option>
+                        <option value="cookie">🍪 Session Cookie / Browser Token</option>
+                        <option value="local">💻 Local Server (No API Key Required)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>API Format</label>
+                    <select id="pf-format" class="form-control">
+                        <option value="auto">auto (try both)</option>
+                        <option value="openai">openai</option>
+                        <option value="anthropic">anthropic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Base URL</label>
+                    <input type="text" id="pf-base" class="form-control" placeholder="http://127.0.0.1:11434">
+                </div>
+                <!-- API Key Input Group -->
+                <div class="form-group" id="pf-key-group">
+                    <label>API Key</label>
+                    <input type="password" id="pf-key" class="form-control" placeholder="sk-...">
+                    <small class="form-hint" id="pf-key-hint"></small>
+                </div>
+                <!-- Session Cookie Input Group -->
+                <div class="form-group" id="pf-cookie-group" style="display:none;">
+                    <label>Session Cookie / Browser Token</label>
+                    <textarea id="pf-cookie" class="form-control code-font" rows="2" placeholder="Paste session cookie or browser authentication token (e.g. session-id=... or ANTHROPIC_SESSION_KEY=...)"></textarea>
+                    <small class="form-hint" style="color: #38bdf8;">Cookies are securely encrypted and forwarded as session authentication headers.</small>
+                </div>
+                <!-- OAuth Group -->
+                <div class="form-group" id="pf-oauth-group" style="display:none; background: #0f172a; padding: 14px; border-radius: 8px; border: 1px solid #334155;">
+                    <label style="color: #a78bfa; font-weight: 600;">OAuth / Device Authorization</label>
+                    <p style="font-size: 12px; color: #94a3b8; margin: 4px 0 10px;">Connect using GitHub Copilot Device OAuth, Google PKCE, or Claude CLI auto-import.</p>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="triggerModalOAuthFlow()" style="color: #a78bfa; border-color: #a78bfa;">🔗 Start OAuth Authorization</button>
+                    <input type="hidden" id="pf-oauth-token" value="">
+                    <div id="pf-oauth-status" style="font-size: 12px; color: #4ade80; margin-top: 6px;"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group flex-1">
+                        <label>Default Model</label>
+                        <input type="text" id="pf-model" class="form-control" placeholder="e.g. moonshotai/kimi-k3-free">
+                    </div>
+                    <div class="form-group flex-1">
+                        <label>Notes</label>
+                        <input type="text" id="pf-notes" class="form-control" placeholder="Optional">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group flex-1">
+                        <label>Default Temperature</label>
+                        <input type="number" id="pf-temp" class="form-control" value="0.7" step="0.1" min="0" max="2">
+                    </div>
+                    <div class="form-group flex-1">
+                        <label>Default Max Tokens</label>
+                        <input type="number" id="pf-max" class="form-control" value="1024" step="256" min="1">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeProviderModal()">Cancel</button>
+                <button class="btn btn-primary" id="btn-provider-save">Save Server</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Provider Hub: OAuth & Key Connect Modal -->
+    <div id="provider-connect-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:3000; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+        <div style="background:#1e293b; border:1px solid #334155; border-radius:16px; padding:28px; max-width:500px; width:90%; position:relative; box-shadow:0 25px 60px rgba(0,0,0,0.6);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div id="hub-modal-logo" style="font-size:28px;"></div>
+                    <div>
+                        <h3 id="hub-modal-title" style="margin:0; color:#f8fafc; font-size:18px;"></h3>
+                        <p id="hub-modal-subtitle" style="margin:2px 0 0; color:#94a3b8; font-size:12px;"></p>
+                    </div>
+                </div>
+                <button onclick="closeConnectModal()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer; padding:4px 8px;" title="Close">✕</button>
+            </div>
+
+            <!-- Device Code flow (GitHub Copilot) -->
+            <div id="hub-device-flow" style="display:none;">
+                <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:20px; text-align:center; margin-bottom:16px;">
+                    <div style="color:#94a3b8; font-size:12px; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Authentication Code</div>
+                    <div id="hub-user-code" style="font-size:32px; font-weight:700; letter-spacing:8px; color:#38bdf8; font-family:monospace;"></div>
+                    <div style="margin-top:12px; color:#94a3b8; font-size:13px;">Enter this code at</div>
+                    <a id="hub-verify-link" href="#" target="_blank" style="color:#818cf8; font-size:14px; font-weight:600;"></a>
+                </div>
+                <div id="hub-device-status" style="display:flex; align-items:center; gap:8px; padding:12px; background:#0f172a; border-radius:8px; font-size:13px; color:#94a3b8; border:1px solid #334155;">
+                    <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#fbbf24; animation: pulse 1s infinite;"></span>
+                    <span id="hub-status-text">Waiting for authorization…</span>
+                </div>
+            </div>
+
+            <!-- API Key connect form -->
+            <div id="hub-apikey-form" style="display:none;">
+                <div class="form-group" style="margin-bottom:12px;">
+                    <label style="color:#94a3b8; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; display:block;">Base URL</label>
+                    <input type="text" id="hub-base-url-input" class="form-control" placeholder="https://api.openai.com/v1" style="font-size:13px;">
+                </div>
+                <div class="form-group" style="margin-bottom:12px;">
+                    <label style="color:#94a3b8; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; display:block;">API Key / Auth Token</label>
+                    <div style="position:relative;">
+                        <input type="password" id="hub-api-key-input" class="form-control" placeholder="Paste your API key here…" style="padding-right:44px; font-family:monospace;">
+                        <button onclick="toggleHubKeyVisibility()" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:#94a3b8; cursor:pointer; font-size:16px;" id="hub-eye-btn" title="Toggle visibility">👁</button>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label style="color:#94a3b8; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; display:block;">Default Model (Optional)</label>
+                    <input type="text" id="hub-model-input" class="form-control" placeholder="e.g. gpt-4o, claude-3-7-sonnet" style="font-size:13px;">
+                </div>
+                <div id="hub-test-result" style="display:none; padding:12px; border-radius:8px; font-size:13px; margin-bottom:14px;"></div>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="testHubConnection()" class="btn btn-outline btn-sm" id="hub-btn-test">⚡ Test Connection</button>
+                    <button onclick="saveHubConnection()" class="btn btn-primary" id="hub-btn-save" style="flex:1;">✅ Connect & Save</button>
+                </div>
+            </div>
+
+            <!-- OAuth (Google, Claude) redirect flow -->
+            <div id="hub-oauth-flow" style="display:none;">
+                <p id="hub-oauth-desc" style="color:#94a3b8; font-size:14px; margin-bottom:20px;"></p>
+                <button onclick="startOAuthRedirect()" class="btn btn-primary" style="width:100%;" id="hub-btn-oauth-start">
+                    <span id="hub-oauth-btn-label">🔗 Open Authorization Page</span>
+                </button>
+                <p style="color:#64748b; font-size:12px; margin-top:12px; text-align:center;">You will be redirected to the provider's authorization page. After approving, AIPI will automatically configure the connection.</p>
+            </div>
+
+            <!-- Claude Code auto-import -->
+            <div id="hub-claude-import" style="display:none;">
+                <div style="background:#0f172a; border:1px solid #334155; border-radius:10px; padding:16px; margin-bottom:16px;">
+                    <p style="color:#94a3b8; font-size:13px; margin:0;">AIPI will automatically detect and import credentials from:</p>
+                    <ul style="color:#f8fafc; font-size:13px; margin:10px 0 0 18px; line-height:1.8;">
+                        <li>~/.claude.json</li>
+                        <li>~/.claude/credentials.json</li>
+                        <li>ANTHROPIC_API_KEY environment variable</li>
+                    </ul>
+                </div>
+                <button onclick="runClaudeImport()" class="btn btn-primary" style="width:100%;">🤖 Auto-Import Claude Code Session</button>
+                <div id="hub-import-result" style="display:none; margin-top:12px; padding:12px; border-radius:8px; font-size:13px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Profile Editor & Builder -->
+    <div id="modal-profile-editor" class="modal-backdrop" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9999; align-items: center; justify-content: center;">
+        <div class="card-section" style="width: 100%; max-width: 620px; background: #1e293b; border: 1px solid var(--border); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); max-height:90vh; overflow-y:auto;">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #38bdf8;" id="pe-modal-title">✨ Create Auto-Profiler</h3>
+                <button class="btn btn-sm btn-outline" onclick="closeProfileEditorModal()">✕</button>
+            </div>
+            <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; gap: 12px;">
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px; font-weight: 600; text-transform:uppercase; color:#94a3b8;">Profile ID / Model Alias</label>
+                        <input type="text" id="pe-id" class="form-control" placeholder="e.g. auto/my-coding, profile/team-agent" style="font-family:monospace; font-size:13px;">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px; font-weight: 600; text-transform:uppercase; color:#94a3b8;">Display Name</label>
+                        <input type="text" id="pe-name" class="form-control" placeholder="e.g. Frontend Dev Cascade">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px; font-weight: 600; text-transform:uppercase; color:#94a3b8;">Category</label>
+                        <select id="pe-category" class="form-control">
+                            <option value="coding">💻 Coding</option>
+                            <option value="free">🆓 Free Tier</option>
+                            <option value="reasoning">🧠 Reasoning</option>
+                            <option value="fast">⚡ Fast Latency</option>
+                            <option value="vision">👁️ Vision</option>
+                            <option value="general">💬 General Chat</option>
+                            <option value="custom">✨ Custom</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 12px; font-weight: 600; text-transform:uppercase; color:#94a3b8;">Failover Strategy</label>
+                        <select id="pe-strategy" class="form-control">
+                            <option value="priority_failover">Priority Failover Cascade</option>
+                            <option value="lowest_latency">Lowest Latency First</option>
+                            <option value="cost_optimized">Cost Optimized First</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label style="font-size: 12px; font-weight: 600; text-transform:uppercase; color:#94a3b8;">Description</label>
+                    <input type="text" id="pe-desc" class="form-control" placeholder="Describe the purpose of this profile...">
+                </div>
+
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                        <label style="font-size: 12px; font-weight: 600; text-transform:uppercase; color:#94a3b8; margin:0;">Fallback Model Cascade (Priority Order)</label>
+                        <span style="font-size:11px; color:#64748b;">Top model runs first; fails over sequentially</span>
+                    </div>
+                    <textarea id="pe-models" class="form-control" rows="3" placeholder="Comma-separated model IDs, e.g.&#10;antigravity/claude-sonnet-4-6, hy3-free, mimo-v2.5-free" style="font-family:monospace; font-size:12px;"></textarea>
+                </div>
+
+                <div style="background:#0f172a; padding:12px; border-radius:8px; border:1px solid #334155;">
+                    <span style="font-size:12px; font-weight:600; text-transform:uppercase; color:#94a3b8; display:block; margin-bottom:8px;">Auto-Failover Triggers</span>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px;">
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                            <input type="checkbox" id="pe-trig-rate" checked> Rate Limits (HTTP 429)
+                        </label>
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                            <input type="checkbox" id="pe-trig-quota" checked> Out of Tokens / Quota Exhaustion
+                        </label>
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                            <input type="checkbox" id="pe-trig-error" checked> Server Outage (HTTP 500/503)
+                        </label>
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                            <input type="checkbox" id="pe-trig-timeout" checked> Network Timeout
+                        </label>
+                    </div>
+                </div>
+
+                <div style="margin-top: 8px; display: flex; justify-content: flex-end; gap: 8px;">
+                    <button class="btn btn-outline" onclick="closeProfileEditorModal()">Cancel</button>
+                    <button class="btn btn-primary" id="btn-save-profile" onclick="saveProfileFromModal()">💾 Save Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Live Profile Simulator -->
+    <div id="modal-profile-sim" class="modal-backdrop" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9999; align-items: center; justify-content: center;">
+        <div class="card-section" style="width: 100%; max-width: 580px; background: #1e293b; border: 1px solid var(--border); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #38bdf8;">⚡ Live Failover Simulator</h3>
+                <button class="btn btn-sm btn-outline" onclick="closeProfileSimulator()">✕</button>
+            </div>
+            <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
+                <div>
+                    <label style="font-size: 12px; font-weight: 600; text-transform:uppercase; color:#94a3b8;">Select Profile to Test</label>
+                    <select id="sim-profile-select" class="form-control" onchange="previewSimCascade()"></select>
+                </div>
+                <div id="sim-cascade-preview" style="background:#0f172a; padding:12px; border-radius:8px; border:1px solid #334155; font-size:13px;"></div>
+                <button class="btn btn-primary" id="btn-run-sim" onclick="runLiveProfileSimulation()">🚀 Run Real-Time Test</button>
+                <div id="sim-results" style="display:none; background:#0b132b; padding:14px; border-radius:8px; border:1px solid #1e3a8a; font-size:13px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Modules -->
+    <script src="providers_preset.js?v=1.0.0"></script>
+    <script src="provider_hub.js?v=1.0.0"></script>
+    <script src="app.js?v=1.0.0"></script>
 </body>
 </html>
