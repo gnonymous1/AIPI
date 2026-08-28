@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/logo.png" alt="AIPI Logo" width="220" style="border-radius: 24px; box-shadow: 0 0 35px rgba(56, 189, 248, 0.4); margin-bottom: 20px;">
+
 # 🌐 AIPI — AI Protocol Interface & Model Gateway
 
 ### *Universal AI Protocol Interface, Multi-Model Manager & Smart Token Failover Gateway with full support for Antigravity & 189 API providers. Supporting routing for over 50 vibe coding agents.*
@@ -29,18 +31,19 @@
 1. [Overview](#-overview)
 2. [Key Capabilities](#-key-capabilities)
 3. [50+ Supported Vibe Coding Agents & IDEs](#-50-supported-vibe-coding-agents--ides)
-4. [Architecture Overview](#-architecture-overview)
-5. [Quick Start Guide](#-quick-start-guide)
-6. [Supported Providers & Models (189 API Providers)](#-supported-providers--models-189-api-providers)
-7. [Universal Routing & Dynamic Auto-Profiles](#-universal-routing--dynamic-auto-profiles)
-8. [Live Quota & Health Monitor](#-live-quota--health-monitor)
-9. [Multi-Model Battle Arena](#-multi-model-battle-arena)
-10. [Enterprise Security & PII Redaction](#-enterprise-security--pii-redaction)
-11. [API Documentation & Usage](#-api-documentation--usage)
-12. [1-Click IDE Auto-Configurator](#-1-click-ide-auto-configurator)
-13. [Docker Deployment](#-docker-deployment)
-14. [Contributing & Community](#-contributing--community)
-15. [License](#-license)
+4. [Dual Operational Modes: Desktop App vs. Web Portal](#-dual-operational-modes-desktop-app-vs-web-portal)
+5. [Architecture Overview](#-architecture-overview)
+6. [Quick Start Guide](#-quick-start-guide)
+7. [Supported Providers & Models (189 API Providers)](#-supported-providers--models-189-api-providers)
+8. [Universal Routing & Dynamic Auto-Profiles](#-universal-routing--dynamic-auto-profiles)
+9. [Live Quota & Health Monitor](#-live-quota--health-monitor)
+10. [Multi-Model Battle Arena](#-multi-model-battle-arena)
+11. [Enterprise Security & PII Redaction](#-enterprise-security--pii-redaction)
+12. [API Documentation & Usage](#-api-documentation--usage)
+13. [1-Click IDE Auto-Configurator](#-1-click-ide-auto-configurator)
+14. [Docker Deployment](#-docker-deployment)
+15. [Contributing & Community](#-contributing--community)
+16. [License](#-license)
 
 ---
 
@@ -82,6 +85,57 @@ AIPI functions as the universal local or cloud backend for all modern AI coding 
 | **Autonomous Agent Frameworks** | **AutoGPT**, **CrewAI**, **LangGraph**, **MetaGPT**, **ChatDev**, **BabyAGI**, **Camel** | Standard OpenAI SDK |
 | **Web Dev & UI Builders** | **Bolt.new**, **v0.dev**, **Lovable**, **Replit Agent**, **LibreChat**, **OpenWebUI**, **Big-AGI** | REST / SSE Streaming |
 | **Developer Productivity** | **Goose**, **Cursor-Small**, **GPT4All**, **Jan.ai**, **LM Studio**, **Ollama**, **LocalAI** | Local Loopback (`http://127.0.0.1:11434`) |
+
+---
+
+## 🕹️ Dual Operational Modes: Desktop App vs. Web Portal
+
+AIPI is engineered with **two complementary operational interfaces** suited for both individual developer workstations and production server environments:
+
+```
++-------------------------------------------------------------------------------+
+|                               AIPI PLATFORM                                   |
++---------------------------------------+---------------------------------------+
+|  🖥️ 1. DESKTOP APPLICATION MODE       |  🌐 2. WEB PORTAL & GATEWAY MODE      |
+|     (ai_model_manager.py)             |     (gateway_server.py on :11434)     |
+|                                       |                                       |
+|  * Native Tkinter GUI & System Tray   |  * Modern Glassmorphism Web App       |
+|  * Hotkey Quick Switcher (Ctrl+Alt+M) |  * Universal OpenAI/Anthropic Gateway |
+|  * 1-Click "Pass to CLI" Spawner      |  * Multi-Model Battle Arena           |
+|  * Direct Claude Profiles Manager     |  * Live Quota & Reset Countdown Bars  |
+|  * Live Provider Ping & Benchmarks    |  * Virtual API Keys & Spend Limits    |
+|  * Local AES-256 Vault Management     |  * 189-Provider Hub & 1-Click OAuth   |
++---------------------------------------+---------------------------------------+
+```
+
+### 🖥️ Mode 1: Desktop Application Mode (`ai_model_manager.py`)
+Designed for **local power users and developers** working directly in Windows/Linux/macOS desktop environments.
+
+* **How to Launch**:
+  * **Windows**: Double-click `Start AIPI.bat` or run `python ai_model_manager.py`
+  * **Desktop Shortcut**: Automatically minimizes to a floating system tray daemon when closed.
+* **Core Capabilities**:
+  * 🗂️ **Visual Provider Grid**: Add, edit, delete, and test 189+ provider endpoints with real-time status indicators (✔ Connected, ✘ Error, ⏳ Testing).
+  * 🤖 **Claude Profiles Manager**: Inspect all profiles configured in `~/.claude/settings.json`, set active profiles, import models, and manage notes.
+  * ⚡ **1-Click "Pass to CLI"**: Right-click or use the tester dropdown to spawn pre-authenticated terminal sessions for **Claude Code, Cursor, Gemini CLI, Cline, OpenCode, KiloCode, or Hermes**.
+  * ⌨️ **Global Hotkey (`Ctrl+Alt+M`)**: Instantly opens a floating quick model switcher without leaving your IDE.
+  * ⏱️ **Model Benchmark Tab**: Run prompt tests across all models belonging to a provider simultaneously and view ranked latency & throughput charts.
+
+---
+
+### 🌐 Mode 2: Web Portal & API Gateway Mode (`gateway_server.py`)
+Designed for **centralized team gateways, Docker servers, and high-throughput agent routing**.
+
+* **How to Launch**:
+  * Run `python gateway_server.py run 11434` or `docker-compose up -d`
+  * Open browser at **`http://127.0.0.1:11434`**
+* **Core Capabilities**:
+  * 🔌 **189-Provider Hub**: Browse categorized cloud providers (Antigravity, OpenAI, Anthropic, DeepSeek, Groq, Together, Ollama) and trigger **1-Click Google Antigravity OAuth 2.0 PKCE**.
+  * ⚔️ **Multi-Model Battle Arena**: Run prompt challenges side-by-side across 2 to 5 models in parallel to evaluate latency (ms), token generation speed, cost ($), and response quality.
+  * 🔋 **Live Quota & Health Monitor**: Visual progress bars displaying remaining tokens, requests, and time-to-reset queried directly from upstream cloud APIs.
+  * 🔑 **Virtual API Keys Management**: Generate custom `vk-...` tenant tokens with enforced spend limits, rate limits, and allowed model policies.
+  * 🎯 **1-Click IDE Setup Center**: Select your IDE (Cursor, Windsurf, Claude Code, Cline, Roo Code) and copy/inject instant configuration files.
+  * 🛡️ **PII & Secrets Redaction Engine**: Real-time mask of sensitive API keys, email addresses, credit cards, and social security numbers with automatic response recovery.
 
 ---
 
