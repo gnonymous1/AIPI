@@ -446,7 +446,7 @@ window.PROVIDER_PRESETS = [
     "base_url": "http://localhost:11434/v1",
     "format": "auto",
     "default_model": "auto/best-coding",
-    "notes": "AIPI Multiple Models Router with enhanced fixations & zero-downtime failover"
+    "notes": "AIPI Multiple Models Router with smart failover & zero-downtime recovery"
   },
   {
     "name": "Hermes Gateway",

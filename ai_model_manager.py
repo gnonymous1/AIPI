@@ -56,7 +56,7 @@ DEFAULT_CONFIG = {
             "base_url": "http://127.0.0.1:11434/v1",
             "api_key": "sk-gateway-local",
             "default_model": "auto/best-coding",
-            "notes": "AIPI Multiple Models Router with enhanced fixations & zero-downtime failover.",
+            "notes": "AIPI Multiple Models Router with smart failover & zero-downtime recovery.",
         },
     ]
 }
@@ -1390,7 +1390,7 @@ class App:
         body = ttk.Frame(dlg, padding=12)
         body.pack(fill="both", expand=True)
 
-        ttk.Label(body, text="AIPI Multiple Models Router with Enhanced Fixations", font=("", 11, "bold")).pack(anchor="w", pady=(0, 4))
+        ttk.Label(body, text="AIPI Multiple Models Router & Smart Failover", font=("", 11, "bold")).pack(anchor="w", pady=(0, 4))
         ttk.Label(body, text="Universal intelligent routing engine with zero-downtime token failover, cooldown tracking, and multi-model cascade.", foreground="gray", wraplength=480).pack(anchor="w", pady=(0, 8))
 
         status = tk.StringVar(value="Checking router health…")

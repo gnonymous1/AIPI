@@ -45,16 +45,16 @@
 
 ## 🌟 Overview
 
-**AIPI (AI Protocol Interface)** is a high-performance **Multi-Model Manager** and universal **Multiple Models Router with Enhanced Fixations** designed to connect all modern AI coding agents, IDE extensions, CLI tools, and web apps (such as Cursor, Windsurf, Claude Code, Cline, Roo Code, LibreChat, OpenCode, VS Code) to **any LLM provider** through a unified, ultra-fast OpenAI/Anthropic-compatible endpoint.
+**AIPI (AI Protocol Interface)** is a high-performance **Multi-Model Manager** and universal **Multiple Models Router** designed to connect all modern AI coding agents, IDE extensions, CLI tools, and web apps (such as Cursor, Windsurf, Claude Code, Cline, Roo Code, LibreChat, OpenCode, VS Code) to **any LLM provider** through a unified, ultra-fast OpenAI/Anthropic-compatible endpoint.
 
-With AIPI, developers never experience quota outages, rate-limit crashes, or vendor lock-in. Powered by its **Multiple Models Router with Enhanced Fixations**, AIPI continuously monitors upstream provider health, intercepts 429 rate limits, and automatically cascades traffic to healthy fallback models in real time with zero downtime.
+With AIPI, developers never experience quota outages, rate-limit crashes, or vendor lock-in. Powered by its **Multiple Models Router**, AIPI continuously monitors upstream provider health, intercepts 429 rate limits, and automatically cascades traffic to healthy fallback models in real time with zero downtime.
 
 ---
 
 ## ⚡ Key Capabilities
 
 * 🎛️ **Universal Multi-Model Manager**: Manage 150+ AI cloud providers (OpenAI, Anthropic, Google Antigravity, DeepSeek, Groq, Together, OpenRouter) and local models (Ollama, LM Studio) in one unified dashboard.
-* 🛡️ **Multiple Models Router with Enhanced Fixations**: Zero-downtime routing engine featuring auto-healing error recovery, dynamic token failover, 90-second smart cooldowns, and automatic provider cascading.
+* 🛡️ **Multiple Models Router & Smart Failover**: Zero-downtime routing engine featuring auto-healing error recovery, dynamic token failover, 90-second smart cooldowns, and automatic provider cascading.
 * 🔄 **Drop-in Standard Endpoints**: Exposes standard `/v1/chat/completions`, `/v1/models`, and `/v1/messages` compatible with any OpenAI or Anthropic SDK, agent, or IDE.
 * 🔋 **Live Real-Time Quota & Health Monitor**: Live percentage bars, health checks, and reset countdowns directly queried from upstream AI clouds.
 * 🔐 **Enterprise Vault Key Encryption**: AES-256 vault encryption with PBKDF2 key derivation to securely protect stored provider credentials.

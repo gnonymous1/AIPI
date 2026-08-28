@@ -62,7 +62,7 @@ PROVIDERS_PRESETS = [
     {"name": "Portkey AI Gateway", "base_url": "https://api.portkey.ai/v1", "format": "openai", "default_model": "gpt-4o", "notes": "Portkey enterprise AI gateway & observability"},
     {"name": "Helicone AI Proxy", "base_url": "https://oai.h3loud.com/v1", "format": "openai", "default_model": "gpt-4o", "notes": "Helicone open-source LLM observability proxy"},
     {"name": "LiteLLM Proxy", "base_url": "http://localhost:4000/v1", "format": "openai", "default_model": "gpt-4o", "notes": "LiteLLM local unified OpenAI-compatible proxy"},
-    {"name": "AIPI Multiple Models Router", "base_url": "http://localhost:11434/v1", "format": "auto", "default_model": "auto/best-coding", "notes": "AIPI Multiple Models Router with enhanced fixations & zero-downtime failover"},
+    {"name": "AIPI Multiple Models Router", "base_url": "http://localhost:11434/v1", "format": "auto", "default_model": "auto/best-coding", "notes": "AIPI Multiple Models Router with smart failover & zero-downtime recovery"},
     {"name": "Hermes Gateway", "base_url": "http://localhost:11434/v1", "format": "auto", "default_model": "gpt-4o", "notes": "Hermes Agent standard local Python API gateway"},
     {"name": "Featherless AI", "base_url": "https://api.featherless.ai/v1", "format": "openai", "default_model": "meta-llama/Llama-3.3-70B-Instruct", "notes": "Featherless AI 2,000+ open-source model library"},
     {"name": "Chutes AI", "base_url": "https://chutes.ai/v1", "format": "openai", "default_model": "meta-llama/Llama-3.3-70B-Instruct", "notes": "Chutes decentralized GPU compute network"},
