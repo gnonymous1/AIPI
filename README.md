@@ -31,19 +31,20 @@
 1. [Overview](#-overview)
 2. [Key Capabilities](#-key-capabilities)
 3. [50+ Supported Vibe Coding Agents & IDEs](#-50-supported-vibe-coding-agents--ides)
-4. [Dual Operational Modes: Desktop App vs. Web Portal](#-dual-operational-modes-desktop-app-vs-web-portal)
-5. [Architecture Overview](#-architecture-overview)
-6. [Quick Start Guide](#-quick-start-guide)
-7. [Supported Providers & Models (189 API Providers)](#-supported-providers--models-189-api-providers)
-8. [Universal Routing & Dynamic Auto-Profiles](#-universal-routing--dynamic-auto-profiles)
-9. [Live Quota & Health Monitor](#-live-quota--health-monitor)
-10. [Multi-Model Battle Arena](#-multi-model-battle-arena)
-11. [Enterprise Security & PII Redaction](#-enterprise-security--pii-redaction)
-12. [API Documentation & Usage](#-api-documentation--usage)
-13. [1-Click IDE Auto-Configurator](#-1-click-ide-auto-configurator)
-14. [Docker Deployment](#-docker-deployment)
-15. [Contributing & Community](#-contributing--community)
-16. [License](#-license)
+4. [Claude Code & Vibe Agent Profiles Manager](#-claude-code--vibe-agent-profiles-manager)
+5. [Dual Operational Modes: Desktop App vs. Web Portal](#-dual-operational-modes-desktop-app-vs-web-portal)
+6. [Architecture Overview](#-architecture-overview)
+7. [Quick Start Guide](#-quick-start-guide)
+8. [Supported Providers & Models (189 API Providers)](#-supported-providers--models-189-api-providers)
+9. [Universal Routing & Dynamic Auto-Profiles](#-universal-routing--dynamic-auto-profiles)
+10. [Live Quota & Health Monitor](#-live-quota--health-monitor)
+11. [Multi-Model Battle Arena](#-multi-model-battle-arena)
+12. [Enterprise Security & PII Redaction](#-enterprise-security--pii-redaction)
+13. [API Documentation & Usage](#-api-documentation--usage)
+14. [1-Click IDE Auto-Configurator](#-1-click-ide-auto-configurator)
+15. [Docker Deployment](#-docker-deployment)
+16. [Contributing & Community](#-contributing--community)
+17. [License](#-license)
 
 ---
 
@@ -58,6 +59,10 @@ With AIPI, developers never experience quota outages, rate-limit crashes, or ven
 ## ⚡ Key Capabilities
 
 * 🎛️ **Universal Multi-Model Manager**: Organize, test, and manage 189 API providers across enterprise clouds, decentralized GPU clusters, and local model runtimes in one unified dashboard.
+* 🤖 **Easy Claude Code & Vibe Coding Profiles Manager**: Full visual profile inspection, 1-click active profile switcher, profile cloning, editing, custom notes, and auto-creation from any of the 189 providers.
+* 🚀 **1-Click "Pass to Agent" Spawner**: Instantly pass any API endpoint, credential, or model directly into terminal coding agents (**Claude Code, Cursor, Gemini CLI, Cline, OpenCode, KiloCode, Hermes Agent, Aider**) with pre-injected environment variables.
+* 🧪 **Live Model Testing & Benchmark Suite**: Real-time prompt testing with token streaming, latency tracking (ms), USD cost accounting, and side-by-side model comparison.
+* ✍️ **Dynamic Profile Editing & Auto-Sync**: Edit, update, and persist custom configurations with live synchronization across local `~/.claude/settings.json`, IDE configs, and gateway routing tables.
 * 🛡️ **Multi-Model Router & API Router**: Intelligent request router with explicit provider prefix matching (`antigravity/`, `opencode/`, `openai/`, `anthropic/`), virtual aliases, and automatic fallback cascades.
 * ⚡ **Simultaneous Provider Execution**: Query multiple AI cloud providers concurrently in the Multi-Model Battle Arena to evaluate speed, latency, output quality, and cost side-by-side.
 * 🔄 **Auto-Rotate & Automatic Fallbacks**: Automatically rotates exhausted accounts and cascades failed requests across backup providers with dynamic 90-second model cooldowns and zero downtime.
@@ -87,6 +92,45 @@ AIPI functions as the universal local or cloud backend for all modern AI coding 
 | **Autonomous Agent Frameworks** | **AutoGPT**, **CrewAI**, **LangGraph**, **MetaGPT**, **ChatDev**, **BabyAGI**, **Camel** | Standard OpenAI SDK |
 | **Web Dev & UI Builders** | **Bolt.new**, **v0.dev**, **Lovable**, **Replit Agent**, **LibreChat**, **OpenWebUI**, **Big-AGI** | REST / SSE Streaming |
 | **Developer Productivity** | **Goose**, **Cursor-Small**, **GPT4All**, **Jan.ai**, **LM Studio**, **Ollama**, **LocalAI** | Local Loopback (`http://127.0.0.1:11434`) |
+
+---
+
+## 🤖 Claude Code & Vibe Agent Profiles Manager
+
+AIPI features a dedicated **Profiles Manager & 1-Click Agent Spawner** that bridges your configured AI model providers with terminal coding CLIs and IDE environments.
+
+```
++----------------------------------------------------------------------------------------------------+
+|                             AIPI PROFILES & AGENT DISPATCH PIPELINE                                |
++-----------------------+----------------------------------+-----------------------------------------+
+|  1. MODEL TESTING     |  2. PROFILE MANAGEMENT           |  3. 1-CLICK "PASS TO AGENT"             |
+|                       |                                  |                                         |
+|  * Live Token Stream  |  * Auto-create Claude Profiles   |  * Claude Code CLI (auto-activates)     |
+|  * Latency (ms) & Cost|  * Visual Active Profile Status  |  * Cursor / Windsurf Environment        |
+|  * Benchmark Ranking  |  * Edit, Rename, & Add Notes     |  * Gemini CLI / OpenCode / KiloCode     |
+|  * Side-by-Side Arena |  * Sync with ~/.claude/settings  |  * Cline / Roo Code / Hermes Agent      |
++-----------------------+----------------------------------+-----------------------------------------+
+```
+
+### 1. ⚙️ Easy Claude Code Profiles Manager
+* **Live Profile Browser**: Instantly reads and displays all profiles configured on your system (`~/.claude/profiles` and `~/.claude/settings.json`).
+* **1-Click Active Switching**: Select any profile and click **"Set as Active"** to update Claude Code immediately.
+* **Auto-Create Profiles**: Convert any of AIPI's 189 providers into a Claude Code profile with a single click.
+* **Edit & Annotate**: Rename profiles, attach customized notes (e.g. rate limit budgets, specialized system prompts), and update endpoints on the fly.
+
+### 2. 🧪 Real-Time Model Testing & Benchmarks
+* **Interactive Model Tester**: Select any provider and model, configure temperature and max tokens, and send test prompts.
+* **Streaming Tokens**: Watch tokens stream live in real time with precise millisecond latency tracking.
+* **Cost & Token Accounting**: View prompt tokens, completion tokens, total tokens, and exact USD cost per request.
+* **Benchmark Tab**: Benchmark all models belonging to a provider simultaneously to discover the fastest and most cost-effective models.
+
+### 3. 🚀 1-Click "Pass to Agent" Spawner
+* Right inside the Model Tester, use the **Pass to ▾** menu to instantly dispatch the selected provider, URL, API key, and model to your favorite coding tool:
+  * **Pass to Claude**: Auto-installs and activates the Claude profile, then spawns a ready-to-code `claude` session.
+  * **Pass to Cursor / Windsurf**: Pre-configures environment variables for immediate IDE integration.
+  * **Pass to Gemini CLI**: Launches Gemini CLI connected directly to AIPI's Antigravity or Vertex routes.
+  * **Pass to Cline / Roo Code**: Injects OpenAI/Anthropic gateway endpoints into extension configs.
+  * **Pass to OpenCode / KiloCode / Hermes**: Spawns terminal sessions with zero manual configuration.
 
 ---
 
