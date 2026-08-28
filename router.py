@@ -190,7 +190,8 @@ def resolve_route(requested_model: str, providers: list, target_provider_name: s
     if "/" in req:
         prefix, rest = req.split("/", 1)
         for p in candidates_providers:
-            if p.get("name", "").strip().lower() == prefix.lower():
+            p_name = p.get("name", "").strip().lower()
+            if p_name == prefix.lower() or prefix.lower() in p_name.split():
                 return [(p, rest)]
 
     # 5. Check if this model is known to belong to a specific provider

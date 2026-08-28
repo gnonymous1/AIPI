@@ -1,16 +1,12 @@
-/**
- * AIPI - Complete 169+ AI Provider Presets Library
- * Synchronized with providers_preset.py
- */
-window.PROVIDER_PRESETS = [
-  // ── Top Primary Labs & Cloud Giants (1-20) ──────────────────────────
+// AIPI 189 Provider Presets Catalog
+window.PROVIDERS_PRESET = [
   {
     "name": "OpenAI",
     "category": "cloud",
     "base_url": "https://api.openai.com/v1",
     "format": "openai",
     "default_model": "gpt-4o",
-    "notes": "Official OpenAI API (GPT-4o, o1, o3-mini)"
+    "notes": "Official OpenAI API"
   },
   {
     "name": "Google Antigravity",
@@ -26,7 +22,7 @@ window.PROVIDER_PRESETS = [
     "base_url": "https://api.anthropic.com/v1",
     "format": "anthropic",
     "default_model": "claude-3-7-sonnet-20250219",
-    "notes": "Official Anthropic Claude API (Sonnet 3.7 & Haiku)"
+    "notes": "Official Anthropic Claude API"
   },
   {
     "name": "Google Gemini (OpenAI Compat)",
@@ -38,19 +34,19 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "DeepSeek AI",
-    "category": "reasoning",
+    "category": "cloud",
     "base_url": "https://api.deepseek.com",
     "format": "openai",
     "default_model": "deepseek-chat",
-    "notes": "DeepSeek V3 & R1 official reasoning API"
+    "notes": "DeepSeek V3 & R1 official API"
   },
   {
     "name": "Groq Cloud",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.groq.com/openai/v1",
     "format": "openai",
     "default_model": "llama-3.3-70b-versatile",
-    "notes": "Ultra-fast LPU inference engine by Groq"
+    "notes": "Ultra-fast LPU inference by Groq"
   },
   {
     "name": "Mistral AI",
@@ -58,7 +54,7 @@ window.PROVIDER_PRESETS = [
     "base_url": "https://api.mistral.ai/v1",
     "format": "openai",
     "default_model": "mistral-large-latest",
-    "notes": "Official Mistral AI API & Codestral"
+    "notes": "Official Mistral AI API"
   },
   {
     "name": "xAI (Grok)",
@@ -66,7 +62,7 @@ window.PROVIDER_PRESETS = [
     "base_url": "https://api.x.ai/v1",
     "format": "openai",
     "default_model": "grok-2-latest",
-    "notes": "xAI Grok-2 & Grok-3 official API"
+    "notes": "xAI Grok official API"
   },
   {
     "name": "Cohere",
@@ -74,7 +70,7 @@ window.PROVIDER_PRESETS = [
     "base_url": "https://api.cohere.com/v2",
     "format": "openai",
     "default_model": "command-r-plus",
-    "notes": "Cohere Command R+ & Embed API"
+    "notes": "Cohere Command & Embed API"
   },
   {
     "name": "Perplexity AI",
@@ -82,19 +78,19 @@ window.PROVIDER_PRESETS = [
     "base_url": "https://api.perplexity.ai",
     "format": "openai",
     "default_model": "sonar-pro",
-    "notes": "Perplexity online web search models"
+    "notes": "Perplexity online search models"
   },
   {
     "name": "Cerebras Cloud",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.cerebras.ai/v1",
     "format": "openai",
     "default_model": "llama3.3-70b",
-    "notes": "Cerebras Wafer-Scale Engine (2000+ tok/s)"
+    "notes": "Cerebras Wafer-Scale Engine inference"
   },
   {
     "name": "SambaNova Cloud",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.sambanova.ai/v1",
     "format": "openai",
     "default_model": "Meta-Llama-3.3-70B-Instruct",
@@ -102,19 +98,19 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Together AI",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.together.xyz/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
-    "notes": "Together AI fast open-source inference"
+    "notes": "Together AI fast inference platform"
   },
   {
     "name": "Fireworks AI",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.fireworks.ai/inference/v1",
     "format": "openai",
     "default_model": "accounts/fireworks/models/llama-v3p3-70b-instruct",
-    "notes": "Fireworks AI production model serving"
+    "notes": "Fireworks AI fast production platform"
   },
   {
     "name": "OpenRouter",
@@ -126,7 +122,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Novita AI",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.novita.ai/v3/openai",
     "format": "openai",
     "default_model": "meta-llama/llama-3.3-70b-instruct",
@@ -134,15 +130,15 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Hyperbolic",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.hyperbolic.xyz/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
-    "notes": "Hyperbolic decentralized GPU network"
+    "notes": "Hyperbolic open-access AI compute"
   },
   {
     "name": "SiliconFlow (SiliconCloud)",
-    "category": "asian",
+    "category": "gpu",
     "base_url": "https://api.siliconflow.cn/v1",
     "format": "openai",
     "default_model": "deepseek-ai/DeepSeek-V3",
@@ -150,7 +146,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Nebius AI Studio",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.studio.nebius.ai/v1",
     "format": "openai",
     "default_model": "meta-llama/Meta-Llama-3.3-70B-Instruct",
@@ -158,7 +154,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "DeepInfra",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.deepinfra.com/v1/openai",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
@@ -166,17 +162,15 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Anyscale Endpoints",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.endpoints.anyscale.com/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
     "notes": "Anyscale Ray-powered LLM endpoints"
   },
-
-  // ── Asian & International AI Leaders (21-45) ────────────────────────
   {
     "name": "Moonshot AI (Kimi)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://api.moonshot.cn/v1",
     "format": "openai",
     "default_model": "moonshot-v1-8k",
@@ -184,7 +178,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Zhipu AI (GLM)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://open.bigmodel.cn/api/paas/v4",
     "format": "openai",
     "default_model": "glm-4-plus",
@@ -192,7 +186,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Alibaba DashScope (Qwen)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
     "format": "openai",
     "default_model": "qwen-max",
@@ -200,7 +194,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Baidu Qianfan (Ernie)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://qianfan.baidubce.com/v2",
     "format": "openai",
     "default_model": "ernie-4.0-8k-latest",
@@ -208,7 +202,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Tencent Hunyuan",
-    "category": "asian",
+    "category": "gpu",
     "base_url": "https://api.hunyuan.cloud.tencent.com/v1",
     "format": "openai",
     "default_model": "hunyuan-pro",
@@ -216,7 +210,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "ByteDance Doubao (Volcengine)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://ark.cn-beijing.volces.com/api/v3",
     "format": "openai",
     "default_model": "doubao-pro-128k",
@@ -224,7 +218,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "01.AI (Yi)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://api.lingyiwanwu.com/v1",
     "format": "openai",
     "default_model": "yi-lightning",
@@ -232,7 +226,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Baichuan AI",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://api.baichuan-ai.com/v1",
     "format": "openai",
     "default_model": "Baichuan4",
@@ -240,7 +234,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "MiniMax",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://api.minimax.chat/v1",
     "format": "openai",
     "default_model": "abab6.5t-chat",
@@ -248,7 +242,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "StepFun (Jieyue)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://api.stepfun.com/v1",
     "format": "openai",
     "default_model": "step-1v-8k",
@@ -256,7 +250,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Upstage AI (Solar)",
-    "category": "asian",
+    "category": "cloud",
     "base_url": "https://api.upstage.ai/v1/solar",
     "format": "openai",
     "default_model": "solar-pro",
@@ -264,7 +258,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Inflection AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.inflection.ai/v1",
     "format": "openai",
     "default_model": "inflection-3-pi",
@@ -272,7 +266,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "AI21 Labs (Jamba)",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.ai21.com/v1",
     "format": "openai",
     "default_model": "jamba-1.5-large",
@@ -280,7 +274,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Voyage AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.voyageai.com/v1",
     "format": "openai",
     "default_model": "voyage-3-large",
@@ -288,7 +282,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Jina AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.jina.ai/v1",
     "format": "openai",
     "default_model": "jina-embeddings-v3",
@@ -296,7 +290,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "FriendliAI",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://inference.friendli.ai/v1",
     "format": "openai",
     "default_model": "meta-llama-3.3-70b-instruct",
@@ -304,7 +298,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Scaleway AI Inference",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.scaleway.com/ai-inference/v1",
     "format": "openai",
     "default_model": "llama-3.3-70b-instruct",
@@ -312,7 +306,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "OVHcloud AI Endpoints",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.ovh.com/v1/ai",
     "format": "openai",
     "default_model": "meta-llama-3-70b-instruct",
@@ -320,7 +314,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Lepton AI",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.lepton.ai/v1",
     "format": "openai",
     "default_model": "llama3-3-70b-instruct",
@@ -328,7 +322,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "OctoAI (DigitalOcean)",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://text.octoai.run/v1",
     "format": "openai",
     "default_model": "meta-llama-3.3-70b-instruct",
@@ -336,15 +330,15 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Replicate",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.replicate.com/v1",
     "format": "openai",
-    "default_model": "meta/llama-2-70b-chat",
-    "notes": "Replicate cloud model hosting"
+    "default_model": "meta/meta-llama-3-70b-instruct",
+    "notes": "Replicate cloud model runner"
   },
   {
     "name": "Hugging Face Inference",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api-inference.huggingface.co/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
@@ -352,7 +346,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Baseten",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://model-baseten.api.baseten.co/v1",
     "format": "openai",
     "default_model": "llama-3-70b-instruct",
@@ -360,7 +354,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "RunPod Serverless",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.runpod.ai/v2/openai/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
@@ -368,17 +362,15 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Modal Labs",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.modal.run/v1",
     "format": "openai",
     "default_model": "meta-llama-3.3-70b-instruct",
     "notes": "Modal serverless Python cloud infrastructure"
   },
-
-  // ── Specialty, Router & Gateway Platforms (46-75) ───────────────────
   {
     "name": "Unify AI",
-    "category": "router",
+    "category": "gpu",
     "base_url": "https://api.unify.ai/v1",
     "format": "openai",
     "default_model": "llama-3.3-70b-instruct@groq",
@@ -386,7 +378,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Martian AI",
-    "category": "router",
+    "category": "gpu",
     "base_url": "https://api.withmartian.com/v1",
     "format": "openai",
     "default_model": "router",
@@ -402,7 +394,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "OpenPipe",
-    "category": "router",
+    "category": "gpu",
     "base_url": "https://api.openpipe.ai/v1",
     "format": "openai",
     "default_model": "openpipe-default",
@@ -410,7 +402,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Braintrust AI Proxy",
-    "category": "router",
+    "category": "gpu",
     "base_url": "https://api.braintrust.dev/v1",
     "format": "openai",
     "default_model": "gpt-4o",
@@ -458,7 +450,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Featherless AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.featherless.ai/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
@@ -466,7 +458,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Chutes AI",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://chutes.ai/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
@@ -474,7 +466,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Glhf.chat",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://glhf.chat/api/openai/v1",
     "format": "openai",
     "default_model": "hf:meta-llama/Llama-3.3-70B-Instruct",
@@ -482,7 +474,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Infermatic AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.infermatic.ai/v1",
     "format": "openai",
     "default_model": "Llama-3-70B-Instruct",
@@ -490,7 +482,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Kluster AI",
-    "category": "fast",
+    "category": "gpu",
     "base_url": "https://api.kluster.ai/v1",
     "format": "openai",
     "default_model": "klusterai/Meta-Llama-3.1-405B-Instruct-FP8",
@@ -498,23 +490,23 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "MonsterAPI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.monsterapi.ai/v1",
     "format": "openai",
     "default_model": "llama-3-70b-instruct",
     "notes": "MonsterAPI low-cost fine-tuning & inference"
   },
   {
-    "name": "Lambda Labs",
-    "category": "cloud",
+    "name": "Lambda Labs Cloud",
+    "category": "gpu",
     "base_url": "https://api.lambdalabs.com/v1",
     "format": "openai",
-    "default_model": "hermes-3-llama-3.1-405b-fp8",
-    "notes": "Lambda Cloud GPU LLM serving"
+    "default_model": "hermes-3-llama-3.1-405b",
+    "notes": "Lambda GPU Cloud AI cluster inference"
   },
   {
     "name": "CoreWeave AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.coreweave.com/v1",
     "format": "openai",
     "default_model": "llama-3.3-70b-instruct",
@@ -522,7 +514,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Hetzner AI Endpoint",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.hetzner.com/v1",
     "format": "openai",
     "default_model": "llama-3.3-70b",
@@ -530,7 +522,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Predibase",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://serving.app.predibase.com/v1",
     "format": "openai",
     "default_model": "llama-3-3-70b-instruct",
@@ -538,7 +530,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Clarifai AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.clarifai.com/v2",
     "format": "openai",
     "default_model": "llama-3-70b-instruct",
@@ -546,7 +538,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Salad Cloud",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.salad.com/v1",
     "format": "openai",
     "default_model": "llama-3-70b",
@@ -554,7 +546,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Pipeline AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.pipeline.ai/v1",
     "format": "openai",
     "default_model": "llama-3-70b",
@@ -562,7 +554,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "FluidStack Compute",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.fluidstack.io/v1",
     "format": "openai",
     "default_model": "llama-3.3-70b",
@@ -570,7 +562,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Paperspace Gradient",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.paperspace.com/v1",
     "format": "openai",
     "default_model": "llama-3-70b",
@@ -578,7 +570,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Genesis Cloud",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.genesiscloud.com/v1",
     "format": "openai",
     "default_model": "llama-3.3-70b",
@@ -586,7 +578,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Cudo Compute",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.cudocompute.com/v1",
     "format": "openai",
     "default_model": "llama-3-70b",
@@ -602,7 +594,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Cloudflare Workers AI",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.cloudflare.com/client/v4/ai/v1",
     "format": "openai",
     "default_model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -610,56 +602,54 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Fastly AI Accelerator",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "https://api.fastly.com/v1",
     "format": "openai",
     "default_model": "llama-3-70b",
     "notes": "Fastly edge AI acceleration platform"
   },
-
-  // ── Local Engine Runtimes & Local Hosts (76-110) ────────────────────
   {
-    "name": "Ollama (Local)",
+    "name": "Ollama Local (Port 11434)",
     "category": "local",
     "base_url": "http://localhost:11434/v1",
     "format": "openai",
     "default_model": "llama3.3",
-    "notes": "Local Ollama server (Zero API key needed)"
+    "notes": "Ollama local open-weight model engine"
   },
   {
-    "name": "LM Studio",
+    "name": "LM Studio Local (Port 1234)",
     "category": "local",
     "base_url": "http://localhost:1234/v1",
     "format": "openai",
     "default_model": "local-model",
-    "notes": "Local LM Studio desktop server"
+    "notes": "LM Studio local GGUF GUI engine"
   },
   {
-    "name": "Jan.ai (Local)",
-    "category": "local",
+    "name": "Jan.ai Local (Port 1337)",
+    "category": "gpu",
     "base_url": "http://localhost:1337/v1",
     "format": "openai",
-    "default_model": "tinyllama",
-    "notes": "Jan.ai open-source local desktop AI"
+    "default_model": "jan-model",
+    "notes": "Jan.ai local privacy-first AI runtime"
   },
   {
-    "name": "LocalAI",
+    "name": "LocalAI Server (Port 8080)",
     "category": "local",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
-    "default_model": "gpt-4",
-    "notes": "LocalAI self-hosted OpenAI alternative"
+    "default_model": "gpt-3.5-turbo",
+    "notes": "LocalAI drop-in self-hosted REST API"
   },
   {
-    "name": "vLLM (Local)",
+    "name": "vLLM High-Throughput Server",
     "category": "local",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "meta-llama/Llama-3.3-70B-Instruct",
-    "notes": "High-throughput vLLM local serving"
+    "notes": "vLLM PagedAttention high-throughput server"
   },
   {
-    "name": "llama.cpp Server",
+    "name": "llama.cpp Server (Port 8080)",
     "category": "local",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
@@ -667,7 +657,7 @@ window.PROVIDER_PRESETS = [
     "notes": "llama-cpp-python / llama-server HTTP daemon"
   },
   {
-    "name": "KoboldCPP Engine",
+    "name": "KoboldCPP Engine (Port 5001)",
     "category": "local",
     "base_url": "http://localhost:5001/v1",
     "format": "openai",
@@ -675,7 +665,7 @@ window.PROVIDER_PRESETS = [
     "notes": "KoboldCPP C++ GGUF local inference server"
   },
   {
-    "name": "TabbyAPI ExLlamaV2",
+    "name": "TabbyAPI ExLlamaV2 (Port 5000)",
     "category": "local",
     "base_url": "http://localhost:5000/v1",
     "format": "openai",
@@ -684,14 +674,14 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Text Generation Inference (TGI)",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
     "default_model": "tgi-model",
     "notes": "Hugging Face TGI production container"
   },
   {
-    "name": "Aphrodite Engine",
+    "name": "Aphrodite Engine (Port 2242)",
     "category": "local",
     "base_url": "http://localhost:2242/v1",
     "format": "openai",
@@ -699,8 +689,8 @@ window.PROVIDER_PRESETS = [
     "notes": "Aphrodite Engine PyTorch LLM server"
   },
   {
-    "name": "SGLang Serving",
-    "category": "local",
+    "name": "SGLang Serving (Port 30000)",
+    "category": "gpu",
     "base_url": "http://localhost:30000/v1",
     "format": "openai",
     "default_model": "sglang-model",
@@ -708,14 +698,14 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Text Generation WebUI (Oobabooga)",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:5000/v1",
     "format": "openai",
     "default_model": "textgen-model",
     "notes": "Oobabooga text-generation-webui extension API"
   },
   {
-    "name": "GPT4All Desktop",
+    "name": "GPT4All Desktop (Port 4891)",
     "category": "local",
     "base_url": "http://localhost:4891/v1",
     "format": "openai",
@@ -723,8 +713,8 @@ window.PROVIDER_PRESETS = [
     "notes": "Nomic GPT4All local desktop app API"
   },
   {
-    "name": "FastChat Controller",
-    "category": "local",
+    "name": "FastChat Controller (Port 8000)",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "vicuna-13b",
@@ -732,7 +722,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "TensorRT-LLM Triton Server",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "trt-llm-model",
@@ -740,7 +730,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Mindie Server (Huawei Ascend)",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:1025/v1",
     "format": "openai",
     "default_model": "ascend-model",
@@ -748,7 +738,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "KServe ML Inference",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
     "default_model": "kserve-model",
@@ -756,7 +746,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "BentoML LLM Server",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:3000/v1",
     "format": "openai",
     "default_model": "bentoml-model",
@@ -764,7 +754,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Ray Serve LLM Cluster",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "ray-serve-model",
@@ -772,7 +762,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Triton Inference Server",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "triton-model",
@@ -780,7 +770,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "TorchServe Engine",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
     "default_model": "torchserve-model",
@@ -788,7 +778,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "MLflow Deployments Server",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:5000/v1",
     "format": "openai",
     "default_model": "mlflow-model",
@@ -796,7 +786,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Runhouse Serving",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "runhouse-model",
@@ -804,7 +794,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Axolotl Serving",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "axolotl-model",
@@ -812,7 +802,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Unsloth Inference Engine",
-    "category": "local",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "unsloth-model",
@@ -820,7 +810,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Vast.ai Instance Endpoint",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "vast-model",
@@ -828,7 +818,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "JarvisLabs GPU Server",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "jarvis-model",
@@ -836,105 +826,103 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "TensorDock Instance",
-    "category": "cloud",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "tensordock-model",
     "notes": "TensorDock low-cost cloud GPU server"
   },
-
-  // ── Developer Applications & Agent Web Interfaces (111-135) ────────
   {
     "name": "Dify AI Platform",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "https://api.dify.ai/v1",
     "format": "openai",
     "default_model": "dify-app",
     "notes": "Dify open-source LLM app development platform"
   },
   {
-    "name": "Flowise AI",
-    "category": "apps",
+    "name": "Flowise AI (Port 3000)",
+    "category": "gpu",
     "base_url": "http://localhost:3000/api/v1",
     "format": "openai",
     "default_model": "flowise-flow",
     "notes": "Flowise drag & drop UI for LangChain"
   },
   {
-    "name": "Langflow Server",
-    "category": "apps",
+    "name": "Langflow Server (Port 7860)",
+    "category": "gpu",
     "base_url": "http://localhost:7860/api/v1",
     "format": "openai",
     "default_model": "langflow-flow",
     "notes": "Langflow visual framework for AI agents"
   },
   {
-    "name": "AnythingLLM",
-    "category": "apps",
+    "name": "AnythingLLM (Port 3001)",
+    "category": "gpu",
     "base_url": "http://localhost:3001/api/v1",
     "format": "openai",
     "default_model": "anythingllm-workspace",
     "notes": "AnythingLLM desktop workspace API"
   },
   {
-    "name": "Open WebUI",
-    "category": "apps",
+    "name": "Open WebUI (Port 3000)",
+    "category": "gpu",
     "base_url": "http://localhost:3000/api/v1",
     "format": "openai",
     "default_model": "open-webui-model",
     "notes": "Open WebUI self-hosted ChatGPT interface"
   },
   {
-    "name": "LibreChat",
-    "category": "apps",
+    "name": "LibreChat (Port 3080)",
+    "category": "gpu",
     "base_url": "http://localhost:3080/api",
     "format": "openai",
     "default_model": "librechat-model",
     "notes": "LibreChat open-source AI conversation platform"
   },
   {
-    "name": "Lobe Chat",
-    "category": "apps",
+    "name": "Lobe Chat (Port 3210)",
+    "category": "gpu",
     "base_url": "http://localhost:3210/v1",
     "format": "openai",
     "default_model": "lobe-model",
     "notes": "Lobe Chat modern agent framework UI"
   },
   {
-    "name": "NextChat",
-    "category": "apps",
+    "name": "NextChat (Port 3000)",
+    "category": "gpu",
     "base_url": "http://localhost:3000/v1",
     "format": "openai",
     "default_model": "nextchat-model",
     "notes": "ChatGPT Next Web lightweight frontend"
   },
   {
-    "name": "SillyTavern Server",
-    "category": "apps",
+    "name": "SillyTavern Server (Port 8000)",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "st-model",
     "notes": "SillyTavern advanced character LLM interface"
   },
   {
-    "name": "Faraday AI",
-    "category": "apps",
+    "name": "Faraday AI (Port 11437)",
+    "category": "gpu",
     "base_url": "http://localhost:11437/v1",
     "format": "openai",
     "default_model": "faraday-model",
     "notes": "Faraday desktop offline LLM app"
   },
   {
-    "name": "Backroom AI",
-    "category": "apps",
+    "name": "Backroom AI (Port 8080)",
+    "category": "gpu",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
     "default_model": "backroom-model",
     "notes": "Backroom AI agent simulation server"
   },
   {
-    "name": "LangServe App",
-    "category": "apps",
+    "name": "LangServe App (Port 8000)",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "langserve-chain",
@@ -942,7 +930,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "LlamaIndex Service",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "llamaindex-query-engine",
@@ -950,7 +938,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Haystack Pipeline Server",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "haystack-pipeline",
@@ -958,7 +946,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Semantic Kernel Gateway",
-    "category": "apps",
+    "category": "router",
     "base_url": "http://localhost:5000/v1",
     "format": "openai",
     "default_model": "sk-plugin",
@@ -966,7 +954,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "PromptFlow Endpoint",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
     "default_model": "promptflow-flow",
@@ -974,7 +962,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Agenta AI Server",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "http://localhost:8000/v1",
     "format": "openai",
     "default_model": "agenta-prompt",
@@ -982,7 +970,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Pezzo AI Platform",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "http://localhost:3000/v1",
     "format": "openai",
     "default_model": "pezzo-prompt",
@@ -990,7 +978,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Lunary / LLMonitor",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "https://api.lunary.ai/v1",
     "format": "openai",
     "default_model": "lunary-prompt",
@@ -998,7 +986,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Honeyhive AI",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "https://api.honeyhive.ai/v1",
     "format": "openai",
     "default_model": "honeyhive-model",
@@ -1006,7 +994,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Promptable AI",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "https://api.promptable.ai/v1",
     "format": "openai",
     "default_model": "promptable-model",
@@ -1014,7 +1002,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "OpenLIT Gateway",
-    "category": "apps",
+    "category": "router",
     "base_url": "http://localhost:8080/v1",
     "format": "openai",
     "default_model": "openlit-model",
@@ -1022,14 +1010,12 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Traceloop OpenInference",
-    "category": "apps",
+    "category": "gpu",
     "base_url": "http://localhost:4318/v1",
     "format": "openai",
     "default_model": "traceloop-model",
     "notes": "Traceloop OTEL OpenInference SDK collector"
   },
-
-  // ── Enterprise Platforms & Coding IDEs (136-169+) ───────────────────
   {
     "name": "AWS Bedrock (Proxy)",
     "category": "enterprise",
@@ -1040,7 +1026,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Azure OpenAI Service",
-    "category": "enterprise",
+    "category": "cloud",
     "base_url": "https://YOUR_RESOURCE.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT",
     "format": "openai",
     "default_model": "gpt-4o",
@@ -1096,7 +1082,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Salesforce Einstein AI Gateway",
-    "category": "enterprise",
+    "category": "router",
     "base_url": "https://api.salesforce.com/einstein/ai-gateway/v1",
     "format": "openai",
     "default_model": "einstein-gpt",
@@ -1112,7 +1098,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Supabase Edge Vector AI",
-    "category": "enterprise",
+    "category": "gpu",
     "base_url": "https://YOUR_PROJECT.supabase.co/functions/v1/ai",
     "format": "openai",
     "default_model": "gte-small",
@@ -1120,7 +1106,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Firebase Genkit Service",
-    "category": "enterprise",
+    "category": "gpu",
     "base_url": "https://us-central1-YOUR_PROJECT.cloudfunctions.net",
     "format": "openai",
     "default_model": "googleai/gemini-2.0-flash",
@@ -1144,7 +1130,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Cody Sourcegraph Enterprise",
-    "category": "enterprise",
+    "category": "apps",
     "base_url": "https://sourcegraph.com/.api/completions/stream",
     "format": "openai",
     "default_model": "cody-pro",
@@ -1152,7 +1138,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Supermaven AI",
-    "category": "fast",
+    "category": "apps",
     "base_url": "https://api.supermaven.com/v1",
     "format": "openai",
     "default_model": "supermaven-v1",
@@ -1160,7 +1146,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Codeium Enterprise",
-    "category": "enterprise",
+    "category": "apps",
     "base_url": "https://api.codeium.com/v1",
     "format": "openai",
     "default_model": "codeium-default",
@@ -1176,7 +1162,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Claude Code CLI Gateway",
-    "category": "apps",
+    "category": "router",
     "base_url": "http://localhost:11434/v1",
     "format": "anthropic",
     "default_model": "claude-3-7-sonnet-20250219",
@@ -1184,7 +1170,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "AIPI Antigravity Cloud Router",
-    "category": "router",
+    "category": "cloud",
     "base_url": "https://cloudcode-pa.googleapis.com",
     "format": "antigravity",
     "default_model": "antigravity/claude-sonnet-4-6",
@@ -1192,7 +1178,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "OpenCode CLI Gateway",
-    "category": "apps",
+    "category": "router",
     "base_url": "http://localhost:11434/v1",
     "format": "openai",
     "default_model": "hy3-free",
@@ -1200,7 +1186,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "OpenCode Zen Gateway",
-    "category": "cloud",
+    "category": "router",
     "base_url": "https://opencode.ai/zen/v1",
     "format": "openai",
     "default_model": "hy3-free",
@@ -1209,7 +1195,7 @@ window.PROVIDER_PRESETS = [
   {
     "name": "KiloCode Gateway",
     "category": "router",
-    "base_url": "http://localhost:20128/v1",
+    "base_url": "http://localhost:11434/v1",
     "format": "openai",
     "default_model": "kilo-auto",
     "notes": "KiloCode multi-tier AI backend routing"
@@ -1224,7 +1210,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "LangSmith Telemetry Proxy",
-    "category": "enterprise",
+    "category": "gpu",
     "base_url": "https://api.smith.langchain.com/v1",
     "format": "openai",
     "default_model": "gpt-4o",
@@ -1232,7 +1218,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "Weights & Biases Prompts",
-    "category": "enterprise",
+    "category": "gpu",
     "base_url": "https://api.wandb.ai/v1",
     "format": "openai",
     "default_model": "gpt-4o",
@@ -1240,7 +1226,7 @@ window.PROVIDER_PRESETS = [
   },
   {
     "name": "PromptLayer Observability",
-    "category": "enterprise",
+    "category": "gpu",
     "base_url": "https://api.promptlayer.com/v1",
     "format": "openai",
     "default_model": "gpt-4o",
@@ -1263,27 +1249,267 @@ window.PROVIDER_PRESETS = [
     "notes": "Vellum production LLM application stack"
   },
   {
-    "name": "GitHub Copilot",
-    "category": "cloud",
-    "base_url": "https://api.githubcopilot.com",
+    "name": "Lambda Labs Cloud",
+    "category": "gpu",
+    "base_url": "https://api.lambdalabs.com/v1",
     "format": "openai",
-    "default_model": "gpt-4o",
-    "notes": "GitHub Copilot via Device OAuth"
+    "default_model": "hermes-3-llama-3.1-405b",
+    "notes": "Lambda Labs high-performance GPU cloud inference"
   },
   {
-    "name": "Claude Code",
-    "category": "cloud",
-    "base_url": "https://api.anthropic.com",
-    "format": "anthropic",
-    "default_model": "claude-3-7-sonnet-20250219",
-    "notes": "Auto-import Claude Code CLI session"
+    "name": "RunPod Serverless AI",
+    "category": "gpu",
+    "base_url": "https://api.runpod.ai/v2",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "RunPod serverless GPU inference endpoint"
   },
   {
-    "name": "Mistral Codestral",
-    "category": "cloud",
-    "base_url": "https://codestral.mistral.ai/v1",
+    "name": "Scaleway Generative AI",
+    "category": "gpu",
+    "base_url": "https://api.scaleway.ai/v1",
     "format": "openai",
-    "default_model": "codestral-latest",
-    "notes": "Mistral dedicated code generation API"
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "Scaleway European sovereign AI cloud"
+  },
+  {
+    "name": "Prime Intellect Decentralized",
+    "category": "gpu",
+    "base_url": "https://api.primeintellect.ai/v1",
+    "format": "openai",
+    "default_model": "meta-llama/Llama-3.3-70B-Instruct",
+    "notes": "Prime Intellect global decentralized AI compute"
+  },
+  {
+    "name": "Baseten Model Inference",
+    "category": "gpu",
+    "base_url": "https://model-YOUR_ID.api.baseten.co/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Baseten low-latency ML model serving"
+  },
+  {
+    "name": "Modal Labs Serverless",
+    "category": "gpu",
+    "base_url": "https://api.modal.com/v1",
+    "format": "openai",
+    "default_model": "vllm-deployment",
+    "notes": "Modal Labs high-speed serverless Python AI infrastructure"
+  },
+  {
+    "name": "Replicate Predictions API",
+    "category": "gpu",
+    "base_url": "https://api.replicate.com/v1",
+    "format": "openai",
+    "default_model": "meta/meta-llama-3-70b-instruct",
+    "notes": "Replicate open-source AI model inference"
+  },
+  {
+    "name": "Lepton AI Cloud",
+    "category": "gpu",
+    "base_url": "https://api.lepton.ai/v1",
+    "format": "openai",
+    "default_model": "llama3-3-70b",
+    "notes": "Lepton AI high-throughput serverless platform"
+  },
+  {
+    "name": "MonsterAPI Platform",
+    "category": "gpu",
+    "base_url": "https://api.monsterapi.ai/v1",
+    "format": "openai",
+    "default_model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+    "notes": "MonsterAPI cost-optimized GPU cloud"
+  },
+  {
+    "name": "Decart AI Engine",
+    "category": "gpu",
+    "base_url": "https://api.decart.ai/v1",
+    "format": "openai",
+    "default_model": "oasis-500m",
+    "notes": "Decart AI real-time generative AI engine"
+  },
+  {
+    "name": "TensorWave AMD Cloud",
+    "category": "gpu",
+    "base_url": "https://api.tensorwave.com/v1",
+    "format": "openai",
+    "default_model": "meta-llama/Llama-3.3-70B-Instruct",
+    "notes": "TensorWave AMD Instinct MI300X inference"
+  },
+  {
+    "name": "Crusoe Cloud Energy AI",
+    "category": "gpu",
+    "base_url": "https://api.crusoecloud.com/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "Crusoe zero-carbon GPU cloud computing"
+  },
+  {
+    "name": "DataCrunch Nordic GPU",
+    "category": "gpu",
+    "base_url": "https://api.datacrunch.io/v1",
+    "format": "openai",
+    "default_model": "meta-llama/Llama-3.3-70B-Instruct",
+    "notes": "DataCrunch Finland green energy GPU cloud"
+  },
+  {
+    "name": "Genesis Cloud AI",
+    "category": "gpu",
+    "base_url": "https://api.genesiscloud.com/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Genesis Cloud high-efficiency renewable GPU compute"
+  },
+  {
+    "name": "Latitude.sh GPU Baremetal",
+    "category": "gpu",
+    "base_url": "https://api.latitude.sh/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Latitude.sh low-latency global bare metal GPUs"
+  },
+  {
+    "name": "Predibase Fine-Tuning Cloud",
+    "category": "gpu",
+    "base_url": "https://serving.predibase.com/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "Predibase LoRAX fine-tuned model serving"
+  },
+  {
+    "name": "BentoML BentoCloud",
+    "category": "gpu",
+    "base_url": "https://YOUR_CLUSTER.bentoml.ai/v1",
+    "format": "openai",
+    "default_model": "vllm-llama-3.3",
+    "notes": "BentoCloud distributed AI model orchestration"
+  },
+  {
+    "name": "CoreWeave Cloud Solutions",
+    "category": "gpu",
+    "base_url": "https://api.coreweave.com/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "CoreWeave specialized high-performance AI cloud"
+  },
+  {
+    "name": "FluidStack Distributed GPU",
+    "category": "gpu",
+    "base_url": "https://api.fluidstack.io/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "FluidStack global distributed compute network"
+  },
+  {
+    "name": "JarvisLabs AI Cloud",
+    "category": "gpu",
+    "base_url": "https://api.jarvislabs.ai/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "JarvisLabs fast GPU instance deployment"
+  },
+  {
+    "name": "Vast.ai GPU Marketplace",
+    "category": "gpu",
+    "base_url": "https://api.vast.ai/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Vast.ai global decentralized GPU marketplace"
+  },
+  {
+    "name": "TensorDock Supercloud",
+    "category": "gpu",
+    "base_url": "https://api.tensordock.com/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "TensorDock low-cost serverless GPU virtualization"
+  },
+  {
+    "name": "Massed Compute AI Cloud",
+    "category": "gpu",
+    "base_url": "https://api.massedcompute.com/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "Massed Compute enterprise NVIDIA H100/A100 compute"
+  },
+  {
+    "name": "Civo Cloud Kubernetes AI",
+    "category": "gpu",
+    "base_url": "https://api.civo.com/v1/ai",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Civo cloud native Kubernetes GPU infrastructure"
+  },
+  {
+    "name": "Vultr Cloud Inference Engine",
+    "category": "gpu",
+    "base_url": "https://api.vultr.com/v2/inference/openai",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "Vultr serverless multi-region AI inference"
+  },
+  {
+    "name": "DigitalOcean Gradient AI",
+    "category": "gpu",
+    "base_url": "https://api.digitalocean.com/v2/genai/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "DigitalOcean 1-click Generative AI platform"
+  },
+  {
+    "name": "OVHcloud AI Endpoints",
+    "category": "gpu",
+    "base_url": "https://endpoints.ai.cloud.ovh.net/v1",
+    "format": "openai",
+    "default_model": "Meta-Llama-3.3-70B-Instruct",
+    "notes": "OVHcloud European sovereign AI inference endpoints"
+  },
+  {
+    "name": "Hetzner AI GPU Cluster",
+    "category": "gpu",
+    "base_url": "https://api.hetzner.com/v1/ai",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Hetzner Cloud dedicated bare-metal GPU nodes"
+  },
+  {
+    "name": "Exoscale European AI Cloud",
+    "category": "gpu",
+    "base_url": "https://api.exoscale.com/v1/ai",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Exoscale Swiss enterprise secure cloud"
+  },
+  {
+    "name": "Sakura Cloud AI Engine",
+    "category": "gpu",
+    "base_url": "https://secure.sakura.ad.jp/cloud/ai/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Sakura Internet Japan AI supercomputing infrastructure"
+  },
+  {
+    "name": "Akamai / Linode Cloud GPU",
+    "category": "gpu",
+    "base_url": "https://api.linode.com/v4/ai",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "Akamai Connected Cloud edge GPU acceleration"
+  },
+  {
+    "name": "Paperspace Gradient Core",
+    "category": "gpu",
+    "base_url": "https://api.paperspace.com/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b",
+    "notes": "DigitalOcean Paperspace enterprise ML training & serving"
+  },
+  {
+    "name": "Foundry Cloud AI",
+    "category": "gpu",
+    "base_url": "https://api.foundry.ai/v1",
+    "format": "openai",
+    "default_model": "llama-3.3-70b-instruct",
+    "notes": "Foundry enterprise orchestrator for custom AI workloads"
   }
 ];
