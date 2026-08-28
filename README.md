@@ -2,7 +2,7 @@
 
 # 🌐 AIPI — AI Protocol Interface & Model Gateway
 
-### *Universal Multi-Model Gateway, Smart Token Failover & Enterprise Infrastructure for AI Agents*
+### *Universal AI Protocol Interface, Multi-Model Manager & Smart Token Failover Gateway with full support for Antigravity & 189 API providers. Supporting routing for over 50 vibe coding agents.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)](https://python.org)
@@ -21,39 +21,42 @@
 </div>
 
 ## 🏷️ Hashtags & Keywords
-`#AIPI` `#AIGateway` `#AIModelManager` `#LLMRouting` `#MultiModel` `#OpenAI` `#Anthropic` `#Claude` `#Gemini` `#DeepSeek` `#Ollama` `#OpenCode` `#Antigravity` `#PrivacyFirst` `#PIIMasking` `#LocalGateway` `#AIAgents` `#OpenSource` `#DevOps` `#Python`
+`#AIPI` `#AIGateway` `#MultiModelManager` `#Antigravity` `#VibeCoding` `#Cursor` `#ClaudeCode` `#GeminiCLI` `#Windsurf` `#Cline` `#RooCode` `#Aider` `#OpenCode` `#189Providers` `#SmartFailover` `#LocalGateway` `#AIAgents` `#OpenSource` `#Python`
 
 ---
 
 ## 📖 Table of Contents
 1. [Overview](#-overview)
 2. [Key Capabilities](#-key-capabilities)
-3. [Architecture Overview](#-architecture-overview)
-4. [Quick Start Guide](#-quick-start-guide)
-5. [Supported Providers & Models](#-supported-providers--models)
-6. [Universal Routing & Dynamic Auto-Profiles](#-universal-routing--dynamic-auto-profiles)
-7. [Live Quota & Health Monitor](#-live-quota--health-monitor)
-8. [Multi-Model Battle Arena](#-multi-model-battle-arena)
-9. [Enterprise Security & PII Redaction](#-enterprise-security--pii-redaction)
-10. [API Documentation & Usage](#-api-documentation--usage)
-11. [1-Click IDE Auto-Configurator](#-1-click-ide-auto-configurator)
-12. [Docker Deployment](#-docker-deployment)
-13. [Contributing & Community](#-contributing--community)
-14. [License](#-license)
+3. [50+ Supported Vibe Coding Agents & IDEs](#-50-supported-vibe-coding-agents--ides)
+4. [Architecture Overview](#-architecture-overview)
+5. [Quick Start Guide](#-quick-start-guide)
+6. [Supported Providers & Models (189 API Providers)](#-supported-providers--models-189-api-providers)
+7. [Universal Routing & Dynamic Auto-Profiles](#-universal-routing--dynamic-auto-profiles)
+8. [Live Quota & Health Monitor](#-live-quota--health-monitor)
+9. [Multi-Model Battle Arena](#-multi-model-battle-arena)
+10. [Enterprise Security & PII Redaction](#-enterprise-security--pii-redaction)
+11. [API Documentation & Usage](#-api-documentation--usage)
+12. [1-Click IDE Auto-Configurator](#-1-click-ide-auto-configurator)
+13. [Docker Deployment](#-docker-deployment)
+14. [Contributing & Community](#-contributing--community)
+15. [License](#-license)
 
 ---
 
 ## 🌟 Overview
 
-**AIPI (AI Protocol Interface)** is a high-performance **Multi-Model Manager** and universal **Multiple Models Router** designed to connect all modern AI coding agents, IDE extensions, CLI tools, and web apps (such as Cursor, Windsurf, Claude Code, Cline, Roo Code, LibreChat, OpenCode, VS Code) to **any LLM provider** through a unified, ultra-fast OpenAI/Anthropic-compatible endpoint.
+**AIPI (AI Protocol Interface)** is a high-performance **Multi-Model Manager** and universal **Smart Token Failover Gateway** with full, out-of-the-box support for **Google Antigravity** and **189 API providers**. It provides seamless, ultra-fast routing for **over 50 vibe coding agents and IDE environments**, including **Claude Code, Cursor, Gemini CLI, Windsurf, Cline, Roo Code, Aider, OpenCode, Continue.dev, Zed, Trae, Void, GitHub Copilot, LibreChat, Goose, Supermaven, Bolt.new, v0, Devin CLI**, and custom autonomous agent swarms.
 
-With AIPI, developers never experience quota outages, rate-limit crashes, or vendor lock-in. Powered by its **Multiple Models Router**, AIPI continuously monitors upstream provider health, intercepts 429 rate limits, and automatically cascades traffic to healthy fallback models in real time with zero downtime.
+With AIPI, developers never experience quota outages, rate-limit crashes, or vendor lock-in. Powered by its **Multiple Models Router & Smart Failover Engine**, AIPI continuously monitors upstream provider health, intercepts 429 rate limits, and automatically cascades traffic to healthy fallback models in real time with zero downtime.
 
 ---
 
 ## ⚡ Key Capabilities
 
-* 🎛️ **Universal Multi-Model Manager**: Manage 150+ AI cloud providers (OpenAI, Anthropic, Google Antigravity, DeepSeek, Groq, Together, OpenRouter) and local models (Ollama, LM Studio) in one unified dashboard.
+* 🚀 **Full Antigravity Support**: Native Google Antigravity OAuth 2.0 PKCE protocol integration, keep-alive tokens, and direct model execution (Claude Sonnet 4.6, Claude Opus 4.6 Thinking, Gemini 3.7/3.6 Flash, GPT-OSS 120B).
+* 🎛️ **189 API Providers & Presets**: Universal management across 189 cloud providers, decentralized GPU clusters, and local model runtimes in one unified dashboard.
+* 💻 **50+ Vibe Coding Agents & IDEs**: Instant drop-in compatibility for Cursor, Claude Code, Gemini CLI, Windsurf, Cline, Roo Code, Aider, OpenCode, Continue.dev, Zed, Trae, Void, Copilot, LibreChat, Goose, and more.
 * 🛡️ **Multiple Models Router & Smart Failover**: Zero-downtime routing engine featuring auto-healing error recovery, dynamic token failover, 90-second smart cooldowns, and automatic provider cascading.
 * 🔄 **Drop-in Standard Endpoints**: Exposes standard `/v1/chat/completions`, `/v1/models`, and `/v1/messages` compatible with any OpenAI or Anthropic SDK, agent, or IDE.
 * 🔋 **Live Real-Time Quota & Health Monitor**: Live percentage bars, health checks, and reset countdowns directly queried from upstream AI clouds.
@@ -64,6 +67,21 @@ With AIPI, developers never experience quota outages, rate-limit crashes, or ven
 * 🔑 **Virtual API Keys & Spend Limits**: Issue tenant/project virtual keys with enforced per-key spend caps, rate limits, and expiration dates.
 * 📊 **Cost & Analytics Engine**: Real-time token accounting, USD cost estimation, latency breakdown, and downloadable CSV/Excel reports.
 * 🛠️ **1-Click IDE Auto-Configurator**: Instantly generates and injects ready-to-use configuration files for Cursor, Claude Code, Windsurf, Cline, and Roo Code.
+
+---
+
+## 💻 50+ Supported Vibe Coding Agents & IDEs
+
+AIPI functions as the universal local or cloud backend for all modern AI coding agents:
+
+| Category | Supported Agents, IDEs & CLIs | Protocol Used |
+| :--- | :--- | :--- |
+| **Leading Vibe IDEs** | **Cursor**, **Windsurf**, **Zed**, **Trae**, **Void IDE**, **Positron**, **VSCodium** | OpenAI `/v1/chat/completions` |
+| **Terminal & Coding CLIs** | **Claude Code CLI**, **Gemini CLI**, **Aider CLI**, **OpenCode CLI**, **Devin CLI**, **KiloCode**, **Hermes Agent** | Anthropic `/v1/messages` / OpenAI `/v1` |
+| **IDE Extensions & Copilots** | **Cline**, **Roo Code**, **Continue.dev**, **GitHub Copilot**, **Supermaven**, **Codeium**, **Amazon Q** | OpenAI / Anthropic Drop-in |
+| **Autonomous Agent Frameworks** | **AutoGPT**, **CrewAI**, **LangGraph**, **MetaGPT**, **ChatDev**, **BabyAGI**, **Camel** | Standard OpenAI SDK |
+| **Web Dev & UI Builders** | **Bolt.new**, **v0.dev**, **Lovable**, **Replit Agent**, **LibreChat**, **OpenWebUI**, **Big-AGI** | REST / SSE Streaming |
+| **Developer Productivity** | **Goose**, **Cursor-Small**, **GPT4All**, **Jan.ai**, **LM Studio**, **Ollama**, **LocalAI** | Local Loopback (`http://127.0.0.1:11434`) |
 
 ---
 
@@ -146,15 +164,18 @@ Navigate to [http://127.0.0.1:11434](http://127.0.0.1:11434) in your browser to 
 
 ---
 
-## 🧩 Supported Providers & Models
+## 🧩 Supported Providers & Models (189 API Providers)
 
-| Provider | Supported Models | Authentication | Feature Highlights |
+AIPI includes 189 pre-configured provider integrations, cloud adapters, and local runtimes:
+
+| Provider Tier | Key Supported Models & Endpoints | Authentication | Feature Highlights |
 | :--- | :--- | :--- | :--- |
-| **Google Antigravity** | `claude-sonnet-4-6`, `claude-opus-4-6-thinking`, `gemini-3.7-flash-high`, `gemini-3.6-flash-medium`, `gemini-2.5-flash`, `gpt-oss-120b-medium` | Google OAuth 2.0 (1-Click) | Multi-endpoint fallback, Reasoning budget |
-| **OpenCode** | `hy3-free`, `grok-4.6`, `mimo-v2.5-free`, `deepseek-v4-flash-free`, `nemotron-3-ultra-free` | API Key | Ultra-fast, unlimited free models |
-| **OpenAI** | `gpt-4o`, `gpt-4o-mini`, `o1`, `o3-mini` | API Key | Function calling, JSON mode |
-| **Anthropic** | `claude-3-7-sonnet-20250219`, `claude-3-5-sonnet-20241022`, `claude-3-5-haiku` | API Key | Extended thinking, Vision |
-| **Ollama Local** | `llama3.3`, `qwen2.5-coder`, `deepseek-r1`, `mistral` | None (Local) | 100% Offline, zero data egress |
+| **Google Antigravity** | `claude-sonnet-4-6`, `claude-opus-4-6-thinking`, `gemini-3.7-flash-high`, `gemini-3.6-flash-medium`, `gemini-2.5-flash`, `gpt-oss-120b-medium` | Google OAuth 2.0 (1-Click) | Multi-endpoint fallback, Reasoning budget, Keep-Alive PKCE |
+| **OpenCode Ecosystem** | `hy3-free`, `grok-4.6`, `mimo-v2.5-free`, `deepseek-v4-flash-free`, `nemotron-3-ultra-free` | API Key / Zen Gateway | Ultra-fast, unlimited free models for coding agents |
+| **Frontier AI Clouds** | OpenAI (`gpt-4o`, `o3-mini`), Anthropic (`claude-3-7-sonnet`), DeepSeek (`r1`, `v3`), xAI (`grok-2`), Mistral (`large-2`) | API Keys | Full function calling, JSON schema, Extended thinking |
+| **High-Throughput Inference** | Groq, Together AI, Cerebras, SambaNova, Fireworks AI, Hyperbolic, Novita AI, DeepInfra, OctoAI | API Keys | Sub-100ms ultra-low latency inference |
+| **Enterprise & Multi-Gateways** | Azure OpenAI, AWS Bedrock, Google Cloud Vertex, OpenRouter, Portkey, Helicone, LiteLLM | IAM / Service Keys | Multi-region redundancy & enterprise compliance |
+| **100% Offline Local Models** | Ollama, LM Studio, vLLM, Text-Gen-WebUI, Jan.ai, LocalAI (`llama3.3`, `qwen2.5-coder`, `deepseek-r1`) | None (Local) | Zero egress, 100% offline air-gapped stealth mode |
 
 ---
 
