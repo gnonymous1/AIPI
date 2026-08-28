@@ -13,6 +13,8 @@ import threading
 import time
 import uuid
 import urllib.parse
+import urllib.request as _ur
+import urllib.error
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from socketserver import ThreadingMixIn
 from urllib.parse import urlparse, parse_qs
@@ -189,8 +191,8 @@ class GatewayHandler(BaseHTTPRequestHandler):
         query = parse_qs(parsed.query)
         config_data = load_config()
 
-        # Web Dashboard static files
-        if path == "/" or path == "/index.html" or path == "/dashboard":
+        # Web Dashboard static files & assets
+        if path in ("/", "/index.html", "/dashboard"):
             if not self._serve_file("index.html", "text/html"):
                 self.send_response(200)
                 self.send_header("Content-Type", "text/html")
@@ -198,14 +200,44 @@ class GatewayHandler(BaseHTTPRequestHandler):
                 self.wfile.write(b"<h1>Standard Professional Gateway Running</h1><p>API: /v1/models | /v1/chat/completions</p>")
             return
 
-        if path == "/style.css":
-            if self._serve_file("style.css", "text/css"):
-                return
-
-        if path.endswith(".js"):
-            js_filename = os.path.basename(path)
-            if self._serve_file(js_filename, "application/javascript"):
-                return
+        clean_path = path.lstrip("/")
+        if clean_path and not clean_path.startswith("v1/"):
+            potential_paths = [
+                os.path.join(WEB_DIR, clean_path),
+                os.path.join(APP_DIR, clean_path)
+            ]
+            for p_file in potential_paths:
+                if os.path.isfile(p_file):
+                    mime_types = {
+                        ".png": "image/png",
+                        ".ico": "image/x-icon",
+                        ".jpg": "image/jpeg",
+                        ".jpeg": "image/jpeg",
+                        ".webp": "image/webp",
+                        ".svg": "image/svg+xml",
+                        ".css": "text/css",
+                        ".js": "application/javascript",
+                        ".html": "text/html",
+                        ".json": "application/json",
+                        ".woff": "font/woff",
+                        ".woff2": "font/woff2",
+                        ".ttf": "font/ttf"
+                    }
+                    ext = os.path.splitext(p_file)[1].lower()
+                    c_type = mime_types.get(ext, "application/octet-stream")
+                    try:
+                        with open(p_file, "rb") as f:
+                            content = f.read()
+                        self.send_response(200)
+                        self.send_header("Content-Type", c_type)
+                        self.send_header("Content-Length", str(len(content)))
+                        self.send_header("Cache-Control", "public, max-age=3600")
+                        self.send_header("Access-Control-Allow-Origin", "*")
+                        self.end_headers()
+                        self.wfile.write(content)
+                        return
+                    except Exception:
+                        pass
 
         if path == "/v1/providers/presets":
             try:
