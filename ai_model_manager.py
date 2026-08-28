@@ -531,6 +531,21 @@ class App:
         root.geometry("980x720")
         root.minsize(860, 580)
 
+        # Set Window & Taskbar Icon
+        icon_path = os.path.join(APP_DIR, "assets", "logo.png")
+        if os.path.exists(icon_path):
+            try:
+                from PIL import Image as PILImage, ImageTk
+                pil_icon = PILImage.open(icon_path).resize((64, 64), PILImage.Resampling.LANCZOS)
+                self._app_icon = ImageTk.PhotoImage(pil_icon)
+                root.iconphoto(False, self._app_icon)
+            except Exception:
+                try:
+                    self._app_icon = tk.PhotoImage(file=icon_path)
+                    root.iconphoto(False, self._app_icon)
+                except Exception:
+                    pass
+
         self._build_toolbar()
         self._build_notebook()
         self._refresh_provider_tree()

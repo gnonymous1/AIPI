@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="AIPI Logo" width="220" style="border-radius: 24px; box-shadow: 0 0 35px rgba(56, 189, 248, 0.4); margin-bottom: 20px;">
+<img src="assets/logo.png" alt="AIPI Logo" width="240" style="filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.5)); margin-bottom: 20px;">
 
 # 🌐 AIPI — AI Protocol Interface & Model Gateway
 
