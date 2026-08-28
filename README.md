@@ -23,7 +23,7 @@
 </div>
 
 ## 🏷️ Hashtags & Keywords
-`#AIPI` `#AIGateway` `#MultiModelManager` `#Antigravity` `#VibeCoding` `#Cursor` `#ClaudeCode` `#GeminiCLI` `#Windsurf` `#Cline` `#RooCode` `#Aider` `#OpenCode` `#189Providers` `#SmartFailover` `#LocalGateway` `#AIAgents` `#OpenSource` `#Python`
+`#AIPI` `#MultiModelManager` `#MultiModelRouter` `#APIRouter` `#SimultaneousProviders` `#Fallbacks` `#AutoRotate` `#TokenSaving` `#SmartFailover` `#Antigravity` `#VibeCoding` `#Cursor` `#ClaudeCode` `#GeminiCLI` `#Windsurf` `#Cline` `#RooCode` `#Aider` `#OpenCode` `#189Providers` `#LocalGateway` `#AIAgents` `#OpenSource` `#Python`
 
 ---
 
@@ -49,22 +49,24 @@
 
 ## 🌟 Overview
 
-**AIPI (AI Protocol Interface)** is a high-performance **Multi-Model Manager** and universal **Smart Token Failover Gateway** with full, out-of-the-box support for **Google Antigravity** and **189 API providers**. It provides seamless, ultra-fast routing for **over 50 vibe coding agents and IDE environments**, including **Claude Code, Cursor, Gemini CLI, Windsurf, Cline, Roo Code, Aider, OpenCode, Continue.dev, Zed, Trae, Void, GitHub Copilot, LibreChat, Goose, Supermaven, Bolt.new, v0, Devin CLI**, and custom autonomous agent swarms.
+**AIPI (AI Protocol Interface)** is a high-performance **Multi-Model Manager**, **Multi-Model Router**, and universal **Smart Token Failover Gateway** with full, out-of-the-box support for **Google Antigravity** and **189 API providers**. It provides seamless, ultra-fast routing for **over 50 vibe coding agents and IDE environments**, including **Claude Code, Cursor, Gemini CLI, Windsurf, Cline, Roo Code, Aider, OpenCode, Continue.dev, Zed, Trae, Void, GitHub Copilot, LibreChat, Goose, Supermaven, Bolt.new, v0, Devin CLI**, and custom autonomous agent swarms.
 
-With AIPI, developers never experience quota outages, rate-limit crashes, or vendor lock-in. Powered by its **Multiple Models Router & Smart Failover Engine**, AIPI continuously monitors upstream provider health, intercepts 429 rate limits, and automatically cascades traffic to healthy fallback models in real time with zero downtime.
+With AIPI, developers never experience quota outages, rate-limit crashes, or vendor lock-in. Powered by its **Multi-Model Router & Smart Failover Engine**, AIPI continuously monitors upstream provider health, intercepts 429 rate limits, and automatically cascades traffic to healthy fallback models in real time with zero downtime.
 
 ---
 
 ## ⚡ Key Capabilities
 
+* 🎛️ **Universal Multi-Model Manager**: Organize, test, and manage 189 API providers across enterprise clouds, decentralized GPU clusters, and local model runtimes in one unified dashboard.
+* 🛡️ **Multi-Model Router & API Router**: Intelligent request router with explicit provider prefix matching (`antigravity/`, `opencode/`, `openai/`, `anthropic/`), virtual aliases, and automatic fallback cascades.
+* ⚡ **Simultaneous Provider Execution**: Query multiple AI cloud providers concurrently in the Multi-Model Battle Arena to evaluate speed, latency, output quality, and cost side-by-side.
+* 🔄 **Auto-Rotate & Automatic Fallbacks**: Automatically rotates exhausted accounts and cascades failed requests across backup providers with dynamic 90-second model cooldowns and zero downtime.
+* 💾 **Token Saving & In-Memory Exact Cache**: Integrated SHA-256 caching engine that returns instant sub-10ms responses for duplicate prompts, eliminating unnecessary token spend.
 * 🚀 **Full Antigravity Support**: Native Google Antigravity OAuth 2.0 PKCE protocol integration, keep-alive tokens, and direct model execution (Claude Sonnet 4.6, Claude Opus 4.6 Thinking, Gemini 3.7/3.6 Flash, GPT-OSS 120B).
-* 🎛️ **189 API Providers & Presets**: Universal management across 189 cloud providers, decentralized GPU clusters, and local model runtimes in one unified dashboard.
 * 💻 **50+ Vibe Coding Agents & IDEs**: Instant drop-in compatibility for Cursor, Claude Code, Gemini CLI, Windsurf, Cline, Roo Code, Aider, OpenCode, Continue.dev, Zed, Trae, Void, Copilot, LibreChat, Goose, and more.
-* 🛡️ **Multiple Models Router & Smart Failover**: Zero-downtime routing engine featuring auto-healing error recovery, dynamic token failover, 90-second smart cooldowns, and automatic provider cascading.
 * 🔄 **Drop-in Standard Endpoints**: Exposes standard `/v1/chat/completions`, `/v1/models`, and `/v1/messages` compatible with any OpenAI or Anthropic SDK, agent, or IDE.
 * 🔋 **Live Real-Time Quota & Health Monitor**: Live percentage bars, health checks, and reset countdowns directly queried from upstream AI clouds.
 * 🔐 **Enterprise Vault Key Encryption**: AES-256 vault encryption with PBKDF2 key derivation to securely protect stored provider credentials.
-* ⚔️ **Multi-Model Battle Arena**: Side-by-side prompt execution to benchmark speed, latency, output quality, and cost across multiple models simultaneously.
 * 🕵️ **PII & Secrets Redaction**: Regex and heuristic masking of emails, API tokens, passwords, credit cards, and sensitive strings with automatic response un-redaction.
 * ✈️ **Air-Gapped Stealth Mode**: Blocks outbound internet traffic when local-only compliance is enforced.
 * 🔑 **Virtual API Keys & Spend Limits**: Issue tenant/project virtual keys with enforced per-key spend caps, rate limits, and expiration dates.
